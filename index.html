@@ -493,6 +493,15 @@ More scores:<br>
         or one of the excellent <a href="index.html#Books">books</a>
         on forecast verification and statistics.
       </p>
+      <p>
+        A note on notation: In the equations below, we use the following
+        notation:
+        <ul>
+          <li>\(x\) = forecast value of a single-valued forecast</li>
+          <li>\(F\) = the cumulative density function (CDF) of a random variable</li>
+          <li>\(y\) = observation value</li>
+        </ul>
+      </p>
 
       <h2 id="Dichotomous">Methods for dichotomous (yes/no) forecasts</h2>
 
@@ -644,7 +653,7 @@ More scores:<br>
       <p><b>Answers the question: </b><i>How did the forecast frequency of "yes"
           events compare to the observed frequency of "yes" events?</i>
       </p>
-      <p><b>Range:</b> 0 to ∞.&nbsp; <b>Perfect score:</b> 1.
+      <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 1.
       </p>
       <p><b>Characteristics:</b> Measures the ratio of the frequency of forecast
         events to the frequency of observed events. Indicates whether the forecast
@@ -659,7 +668,7 @@ More scores:<br>
       <p><a id="POD"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i>Probability of detection (hit rate)</i></b> &nbsp;(also denoted&nbsp; <i>H</i>)</p>
+        <p><b><i>Probability of detection (hit rate)</i></b> &nbsp;(also denoted&nbsp;\(H\))</p>
         <p class="equation">
           $$\text{POD} = \frac{\text{hits}}{\text{hits} + \text{misses}}$$
         </p>
@@ -702,7 +711,7 @@ More scores:<br>
       <p><a id="POFD"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i>Probability of false detection (false alarm rate)</i></b> &nbsp;(also denoted <i>F</i>)</p>
+        <p><b><i>Probability of false detection (false alarm rate)</i></b> &nbsp;(also denoted \(F\))</p>
         <p class="equation">
           $$\text{POFD} = \frac{\text{false alarms}}{\text{correct negatives} + \text{false alarms}}$$
         </p>
@@ -774,7 +783,7 @@ More scores:<br>
       <p><a id="ETS"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i>Equitable threat score (Gilbert skill score)</i></b> &nbsp;(also denoted &nbsp;<i>GSS</i>)</p>
+        <p><b><i>Equitable threat score (Gilbert skill score)</i></b> &nbsp;(also denoted&nbsp;<i>GSS</i>)</p>
         <p class="equation">
           $$\text{ETS} = \frac{\text{hits} - \text{hits}_{\text{random}}}{\text{hits} + \text{misses} + \text{false alarms} - \text{hits}_{\text{random}}}$$
         </p>
@@ -804,7 +813,7 @@ More scores:<br>
       <p><a id="HK"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i>Hanssen and Kuipers discriminant (true skill statistic, Peirce's skill score)</i></b> &nbsp;(also denoted &nbsp;<i>TSS</i> &nbsp;and&nbsp; <i>PSS</i>)</p>
+        <p><b><i>Hanssen and Kuipers discriminant (true skill statistic, Peirce's skill score)</i></b> &nbsp;(also denoted&nbsp;<i>TSS</i> &nbsp;and&nbsp;<i>PSS</i>)</p>
         <p class="equation">
           $$\text{HK} = \frac{\text{hits}}{\text{hits} + \text{misses}} - \frac{\text{false alarms}}{\text{false alarms} + \text{correct negatives}}$$
         </p>
@@ -831,11 +840,11 @@ More scores:<br>
       <div>
         <p><b><i>Heidke skill score (Cohen's κ)</i></b></p>
         <p class="equation">
-          $$\text{HSS} = \frac{\text{hits} + \text{correct negatives} - E_{\text{correct}}}{\text{total} - E_{\text{correct}}}$$
+          $$\text{HSS} = \frac{\text{hits} + \text{correct negatives} - E_{\text{correct_random}}}{\text{total} - E_{\text{correct_random}}}$$
         </p>
         <p><b><i>where&nbsp;</i></b></p>
         <p class="equation">
-          $$E_{\text{correct}} = \frac{(\text{hits} + \text{misses})(\text{hits} + \text{false alarms}) + (\text{correct negatives} + \text{misses})(\text{correct negatives} + \text{false alarms})}{\text{total}}$$
+          $$E_{\text{correct_random}} = \frac{(\text{hits} + \text{misses})(\text{hits} + \text{false alarms}) + (\text{correct negatives} + \text{misses})(\text{correct negatives} + \text{false alarms})}{\text{total}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What was the accuracy of the forecast
@@ -860,15 +869,22 @@ More scores:<br>
       <div>
         <p><b><i>Odds ratio</i></b></p>
         <p class="equation">
-          $$\text{OR} = \frac{\text{hits} \times \text{correct negatives}}{\text{misses} \times \text{false alarms}}$$
+          \[
+          \text{OR} 
+          = \frac{\text{hits} \cdot \text{correct negatives}}
+                {\text{misses} \cdot \text{false alarms}}
+          = 
+          \frac{\left(\dfrac{\text{POD}}{1-\text{POD}}\right)}
+              {\left(\dfrac{\text{POFD}}{1-\text{POFD}}\right)}
+          \]
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the ratio of the odds of a "yes"
           forecast being correct, to the odds of a "yes" forecast being wrong?</i>
       </p>
-      <p><b>Odds ratio - Range:</b> 0 to ∞, 1 indicates no skill. <b>Perfect score:</b> ∞
+      <p><b>Odds ratio - Range:</b> 0 to \(\infty\), 1 indicates no skill. <b>Perfect score:</b> \(\infty\)
         <br>
-        <b>Log odds ratio - Range:</b> -∞ to ∞, 0 indicates no skill.&nbsp; <b>Perfect score:</b> ∞
+        <b>Log odds ratio - Range:</b> \(-\infty\) to \(\infty\), 0 indicates no skill.&nbsp; <b>Perfect score:</b> \(\infty\)
       </p>
       <p><b>Characteristics:</b> Measures the ratio of the odds of making a
         hit to the odds of making a false alarm. The logarithm of the odds ratio is
@@ -937,20 +953,20 @@ More scores:<br>
           <tr>
             <th></th>
             <th>1</th>
-            <td class="green-cell"><i>n(F<sub>1</sub>,O<sub>1</sub>)</i></td>
-            <td class="green-cell"><i>n(F<sub>1</sub>,O<sub>2</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>1</sub>,y<sub>1</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>1</sub>,y<sub>2</sub>)</i></td>
             <td class="green-cell"><i>...</i></td>
-            <td class="green-cell"><i>n(F<sub>1</sub>,O<sub>K</sub>)</i></td>
-            <td class="lightgreen-cell"><i>N(F<sub>1</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>1</sub>,y<sub>K</sub>)</i></td>
+            <td class="lightgreen-cell"><i>N(x<sub>1</sub>)</i></td>
           </tr>
           <tr>
             <th rowspan="2">Forecast<br>Category</th>
             <th>2</th>
-            <td class="green-cell"><i>n(F<sub>2</sub>,O<sub>1</sub>)</i></td>
-            <td class="green-cell"><i>n(F<sub>2</sub>,O<sub>2</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>2</sub>,y<sub>1</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>2</sub>,y<sub>2</sub>)</i></td>
             <td class="green-cell"><i>...</i></td>
-            <td class="green-cell"><i>n(F<sub>2</sub>,O<sub>K</sub>)</i></td>
-            <td class="lightgreen-cell"><i>N(F<sub>2</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>2</sub>,y<sub>K</sub>)</i></td>
+            <td class="lightgreen-cell"><i>N(x<sub>2</sub>)</i></td>
           </tr>
           <tr>
             <th><i>...</i></th>
@@ -963,28 +979,28 @@ More scores:<br>
           <tr>
             <th></th>
             <th><i>K</i></th>
-            <td class="green-cell"><i>n(F<sub>K</sub>,O<sub>1</sub>)</i></td>
-            <td class="green-cell"><i>n(F<sub>K</sub>,O<sub>2</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>K</sub>,y<sub>1</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>K</sub>,y<sub>2</sub>)</i></td>
             <td class="green-cell"><i>...</i></td>
-            <td class="green-cell"><i>n(F<sub>K</sub>,O<sub>K</sub>)</i></td>
-            <td class="lightgreen-cell"><i>N(F<sub>K</sub>)</i></td>
+            <td class="green-cell"><i>n(x<sub>K</sub>,y<sub>K</sub>)</i></td>
+            <td class="lightgreen-cell"><i>N(x<sub>K</sub>)</i></td>
           </tr>
           <tr>
             <th>Total</th>
             <th></th>
-            <td class="lightgreen-cell"><i>N(O<sub>1</sub>)</i></td>
-            <td class="lightgreen-cell"><i>N(O<sub>2</sub>)</i></td>
+            <td class="lightgreen-cell"><i>N(y<sub>1</sub>)</i></td>
+            <td class="lightgreen-cell"><i>N(y<sub>2</sub>)</i></td>
             <td class="lightgreen-cell"><i>...</i></td>
-            <td class="lightgreen-cell"><i>N(O<sub>K</sub>)</i></td>
+            <td class="lightgreen-cell"><i>N(y<sub>K</sub>)</i></td>
             <td class="lightgreen-cell"><i>N</i></td>
           </tr>
         </tbody>
       </table>
       <br>
-      <p>In this table \(n(F_i, O_j)\) denotes the number
+      <p>In this table \(n(x_i, y_j)\) denotes the number
         of forecasts in category \(i\) that had observations in category \(j\),
-        \(N(F_i)\) denotes the total number of forecasts in category
-        \(i\), \(N(O_j)\) denotes the total number of observations in
+        \(N(x_i)\) denotes the total number of forecasts in category
+        \(i\), \(N(y_j)\) denotes the total number of observations in
         category \(j\), and \(N\) is the total number of forecasts.
       </p>
       <p>The <i>distributions approach</i> to forecast verification examines
@@ -992,7 +1008,7 @@ More scores:<br>
         table. A perfect forecast system would have values of non-zero elements only
         along the diagonal, and values of 0 for all entries off the diagonal. The
         off-diagonal elements give information about the specific nature of the forecast
-        errors. The marginal distributions (<i>N</i>'s at right and bottom of table)
+        errors. The marginal distributions (\(N\)'s at right and bottom of table)
         show whether the forecast produces the correct distribution of categorical
         values when compared to the observations.
         <a href="index.html#Murphy_and_Winkler_1987">Murphy
@@ -1005,9 +1021,9 @@ More scores:<br>
         it is more difficult to condense the results into a single number.
         There are fewer statistics that summarize the performance of multi-category
         forecasts. However, any multi-category forecast verification can be converted to a
-        series of <i>K</i>-1 yes/no-type verifications by defining "yes" to be
-        "in category <i>i</i>" or "in category <i>i</i> or higher", and "no"
-        to be "not in category <i>i</i>" or "below category <i>i</i>".
+        series of \(K-1\) yes/no-type verifications by defining "yes" to be
+        "in category \(i\)" or "in category \(i\) or higher", and "no"
+        to be "not in category \(i\)" or "below category \(i\)".
       </p>
       <p><a id="histogram"></a>- - - - - - - - - - -
       </p>
@@ -1030,7 +1046,7 @@ More scores:<br>
       <div>
         <p><b><i>Accuracy (fraction correct)</i></b></p>
         <p class="equation">
-          $$\text{Accuracy} = \frac{1}{N}\sum_{i=1}^{K} n_{ii}$$
+          $$\text{Accuracy} = \frac{1}{N}\sum_{i=1}^{K} n(x_i, y_i)$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>Overall, what fraction of the
@@ -1052,13 +1068,23 @@ More scores:<br>
       <div>
         <p><a id="multicategory_HSS"></a><b><i>Heidke skill score</i></b></p>
         <p class="equation">
-          $$\text{HSS} = \frac{\sum_{i=1}^{K} n_{ii} - \sum_{i=1}^{K} n_{i.}n_{.i}/N}{N - \sum_{i=1}^{K} n_{i.}n_{.i}/N}$$
+          $$
+          HSS =
+          \frac{
+          \frac{1}{N}\sum_{i=1}^{k} n(x_i, y_i)
+          -
+          \frac{1}{N^2}\sum_{i=1}^{k} N(x_i) N(y_i)
+          }{
+          1 -
+          \frac{1}{N^2}\sum_{i=1}^{k} N(x_i) N(y_i)
+          }.
+          $$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What was the accuracy of the forecast
           in predicting the correct category, relative to that of random chance?</i>
       </p>
-      <p><b>Range:</b> -∞ to 1, 0 indicates no skill.&nbsp; <b>Perfect score:</b> 1.
+      <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill.&nbsp; <b>Perfect score:</b> 1.
       </p>
       <p><b>Characteristics:</b> Measures the fraction of correct forecasts
         after eliminating those forecasts which would be correct due purely to random
@@ -1076,7 +1102,15 @@ More scores:<br>
       <div>
         <p><b><i>Hanssen and Kuipers discriminant (true skill statistic, Peirce's skill score)</i></b></p>
         <p class="equation">
-          $$\text{HK} = \frac{\sum_{i=1}^{K} n_{ii} - \sum_{i=1}^{K} n_{i.}n_{.i}/N}{N - \sum_{i=1}^{K} (n_{.i})^2/N}$$
+          $$\text{HK} =
+          \frac{
+          \frac{1}{N}\sum_{i=1}^{k} n(x_i, y_i)
+          -
+          \frac{1}{N^2}\sum_{i=1}^{k} N(x_i) \, N(y_i)
+          }{
+          1 -
+          \frac{1}{N^2}\sum_{i=1}^{k} \left( N(y_i) \right)^2
+          }.$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What was the accuracy of the
@@ -1093,24 +1127,22 @@ More scores:<br>
       <div>
         <p><b><i>Gerrity score</i></b></p>
         <p class="equation">
-          $$\text{GS} = \frac{1}{N}\sum_{i=1}^{K}\sum_{j=1}^{K} s_{ij}n_{ij}$$
+          $$\text{GS} = \frac{1}{N}\sum_{i=1}^{K}\sum_{j=1}^{K} n(x_i, y_j) s_{ij}$$
         </p>
       </div>
       where \(s_{ij}\) are elements of a scoring matrix given by
       <p class="equation">
-        $$s_{ii} = \frac{1 - \sum_{k=1}^{K} p_k^2}{\sum_{k=1}^{K} p_k (1 - p_k)}$$ 
-        (\(i = j\), diagonal)
+        $$s_{ii} = \frac{1}{K-1}\left(\sum_{r=1}^{i-1} a_r^{-1} + \sum_{r=i}^{K-1} a_r\right) \quad (i = j, \text{ diagonal})$$
       </p>
       <p class="equation">
-        $$s_{ij} = \frac{-1}{\sum_{k=\min(i,j)}^{\max(i,j)-1} p_k} \cdot \frac{1 - \sum_{k=1}^{K} p_k^2}{\sum_{k=1}^{K} p_k (1 - p_k)}$$
-        (\(i \neq j\), off-diagonal)
+        $$s_{ij} = s_{ji} = \frac{1}{K-1}\left(\sum_{r=1}^{i-1} a_r^{-1} - (j-i) + \sum_{r=j}^{K-1} a_r\right) \quad (i \neq j, \text{ off-diagonal})$$
       </p>
       <p class="equation">
-        $$a_i = \sum_{k=1}^{i} p_k$$
+        $$a_i = \left(1 - \sum_{r=1}^{i} p_r\right) \bigg/ \sum_{r=1}^{i} p_r$$
       </p>
       <p>
         with the sample probabilities (observed frequencies) given by
-        \(p_i = N(O_i)/N\)).
+        \(p_i = N(y_i)/N\).
       </p>
       <p>
         <b>Answers the question: </b><i>What was the accuracy of the
@@ -1232,12 +1264,12 @@ More scores:<br>
       <div>
         <p><b><i>Mean error</i></b></p>
         <p class="equation">
-          $$\text{ME} = \frac{1}{n}\sum_{i=1}^{n}(f_i - o_i)$$
+          $$\text{ME} = \frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the average forecast error?</i>
       </p>
-      <p><b>Range:</b> -∞ to ∞. <b>Perfect score:</b> 0.
+      <p><b>Range:</b> \(-\infty\) to \(\infty\). <b>Perfect score:</b> 0.
       </p>
       <p><b>Characteristics:</b> Simple, familiar. Also called the (additive)
         bias. Does not measure the magnitude of the errors. Does not measure the
@@ -1251,13 +1283,13 @@ More scores:<br>
       <div>
         <p><b><i>(Multiplicative) bias</i></b></p>
         <p class="equation">
-          $$\text{Bias} = \frac{\bar{f}}{\bar{o}}$$
+          $$\text{Bias} = \frac{\bar{x}}{\bar{y}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>How does the average forecast magnitude
           compare to the average observed magnitude?</i>
       </p>
-      <p><b>Range:</b> -∞ to ∞. <b>Perfect score:</b> 1.
+      <p><b>Range:</b> \(-\infty\) to \(\infty\). <b>Perfect score:</b> 1.
       </p>
       <p><b>Characteristics:</b> Simple, familiar. Best suited for quantities
         that have 0 as a lower or upper bound. Does not measure the magnitude of
@@ -1272,12 +1304,12 @@ More scores:<br>
       <div>
         <p><b><i>Mean absolute error</i></b></p>
         <p class="equation">
-          $$\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|f_i - o_i|$$
+          $$\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|x_i - y_i|$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the average magnitude of the forecast errors?</i>
       </p>
-      <p><b>Range:</b> 0 to ∞.&nbsp; <b>Perfect score:</b> 0.
+      <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
       </p>
       <p><b>Characteristics:</b> Simple, familiar. Does not indicate the direction
         of the deviations.
@@ -1289,12 +1321,12 @@ More scores:<br>
       <div>
         <p><b><i>Root mean square error</i></b></p>
         <p class="equation">
-          $$\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(f_i - o_i)^2}$$
+          $$\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)^2}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the average magnitude of the forecast errors?</i>
       </p>
-      <p><b>Range:</b> 0 to ∞.&nbsp; <b>Perfect score:</b> 0.
+      <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
       </p>
       <p><b>Characteristics:</b> Simple, familiar. Measures "average" error,
         weighted according to the square of the error. Does not indicate the direction
@@ -1312,12 +1344,12 @@ More scores:<br>
       <div>
         <p><b><i>Mean squared error</i></b></p>
         <p class="equation">
-          $$\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}(f_i - o_i)^2$$
+          $$\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)^2$$
         </p>
       </div>
       <p>Measures the mean squared difference between the forecasts and observations.
       </p>
-      <p><b>Range:</b> 0 to ∞.&nbsp; <b>Perfect score:</b> 0.
+      <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
       </p>
       <p><b>Characteristics:</b> Can be decomposed into component error sources
         following Murphy (1987). Units of <i>MSE</i> are the square of the basic units.
@@ -1327,14 +1359,17 @@ More scores:<br>
       <p><a id="LEPS"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i><a href="site/LEPS.html">Linear error in probability space</a> (LEPS)</i></b></p>
-        <p class="equation">
-          $$\text{LEPS} = \frac{1}{n}\sum_{i=1}^{n}|\text{CDF}_o(f_i) - \text{CDF}_o(o_i)|$$
-        </p>
-      </div>
+      <p><b><i><a href="site/LEPS.html">Linear error in probability space</a> (LEPS)</i></b></p>
+
+      <p class="equation">
+        $$\text{LEPS} = \frac{1}{n}\sum_{i=1}^{n}\bigl|F(x_i) - G(y_i)\bigr|$$
+      </p>
+
       <img src="site/LEPSdiagram.gif" alt="LEPS diagram" width="370" height="243" class="right">
-      <p>Measures the error in probability space as opposed to measurement space,
-        where <i>CDFo()</i> is the cumulative probability density function of
+
+      <p>
+        Measures the error in probability space as opposed to measurement space,
+        where \(G\) is the cumulative distribution function of
         the observations, determined from an appropriate climatology.
       </p>
       <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
@@ -1343,9 +1378,9 @@ More scores:<br>
         values if they are warranted. Requires knowledge of climatological PDF. Not
         yet in wide usage --&nbsp; <a href="index.html#Potts_et_al_1996">Potts et al. (1996)</a>
         derived an improved version of the LEPS score that is equitable and
-        does not "bend back" (give better scores for worse forecasts near the extremes):
-        $$\text{LEPS}_{\text{revised}} = \frac{2}{n(n-1)}\sum_{i<j}\left\{\text{sign}(f_j - f_i)[\text{CDF}_o(f_j) -
-          \text{CDF}_o(f_i)] + \text{sign}(o_j - o_i)[\text{CDF}_o(o_j) - \text{CDF}_o(o_i)]\right\}$$. </p>
+        does not "bend back" (give better scores for worse forecasts near the extremes):</p>
+        <p class="equation">
+        $$\text{LEPS} = 3 \left\{ 1 - \left| G(x) - G(y) \right| + [G(x)]^2 - G(x) + [G(y)]^2 - G(y) \right\} - 1$$
           <p class="green">In the example above, suppose the climatological
             temperature is normally distributed with a mean of 14 C and variance of
             50 C. Then according to the first expression, LEPS=0.106.
@@ -1356,17 +1391,17 @@ More scores:<br>
           <div>
             <p><b><i>Stable equitable error in probability space (SEEPS)</i></b></p>
             <p class="equation">
-              $$\text{SEEPS} = \sum_{i=1}^{3}\sum_{j=1}^{3} n(F_i,O_j) \cdot s_{ij}$$
+              $$\text{SEEPS} = \frac{1}{N}\sum_{i=1}^{3}\sum_{j=1}^{3} n(x_i,y_j) s_{ij}$$
             </p>
           </div>
-          <p>where \(n(F_i, O_j)\) is the joint occurrence
+          <p>where \(n(x_i, y_j)\) is the joint occurrence
             of forecast category \(i\) and observed category \(j\) in
             the 3x3 contingency table, and the scoring matrix is given by</p>
           <p class="equation">
             $$s_{ij} = \begin{bmatrix}
-            0 & p_1 & 1 \\
-            p_1 & 0 & p_3 \\
-            1 & p_3 & 0
+            1 & 1 - \frac{1}{2(p_2 + p_3)} & 1 - \frac{1}{2p_3} - \frac{1}{2(p_2 + p_3)} \\
+            1 - \frac{1}{2p_1} & 1 & 1 - \frac{1}{2p_3} \\
+            1 - \frac{1}{2p_1} - \frac{1}{2(p_1 + p_2)} & 1 - \frac{1}{2(p_1 + p_2)} & 1
             \end{bmatrix}$$
           </p>
 
@@ -1394,7 +1429,7 @@ More scores:<br>
           <div>
             <p><b><i>Correlation coefficient</i></b></p>
             <p class="equation">
-              $$r = \frac{\sum_{i=1}^{n}(f_i - \bar{f})(o_i - \bar{o})}{\sqrt{\sum_{i=1}^{n}(f_i - \bar{f})^2}\sqrt{\sum_{i=1}^{n}(o_i - \bar{o})^2}}$$
+              $$r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2}\sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}$$
             </p>
           </div>
           <p><b>Answers the question: </b><i>How well did the forecast values
@@ -1415,8 +1450,13 @@ More scores:<br>
           <div>
             <p><b><i>Anomaly correlation</i></b></p>
             <p class="equation">
-              $$\text{AC} = \frac{\sum_{i=1}^{n}(f_i - C_i)(o_i - C_i)}{\sqrt{\sum_{i=1}^{n}(f_i - C_i)^2}\sqrt{\sum_{i=1}^{n}(o_i - C_i)^2}}$$
+              $$\text{AC} = \frac{\sum (x - C)(y - C)}{\sqrt{\sum (x - C)^2} \sqrt{\sum (y - C)^2}}$$
             </p>
+            <p>or for the centered version,</p>
+            <p class="equation">
+              $$\text{AC} = \frac{\sum \left[ (x - C) - \overline{(x - C)} \right] \left[ (y - C) - \overline{(y - C)} \right]}{\sqrt{\sum \left[ (x - C) - \overline{(x - C)} \right]^2} \sqrt{\sum \left[ (y - C) - \overline{(y - C)} \right]^2}}$$
+            </p>
+            <p>where \(C\) denotes the climatological mean.</p>
           </div>
           <p><b>Answers the question: </b><i>How well did the forecast
               anomalies correspond to the observed anomalies?</i>
@@ -1440,17 +1480,17 @@ More scores:<br>
           <div>
             <p><b><i>S1 score</i></b></p>
             <p class="equation">
-              $$S1 = \frac{1}{n}\sum_{i=1}^{n}\frac{|\Delta F_i - \Delta O_i|}{|\Delta O_i|}$$
+              $$S1 = \frac{\sum_{\text{adjacent pairs}} |\Delta x - \Delta y|}{\sum_{\text{adjacent pairs}} \max(|\Delta x|, |\Delta y|)} \times 100$$
             </p>
           </div>
-          <p>where <i>ΔF</i> (<i>ΔO</i>)
+          <p>where <i>Δx</i> (<i>Δy</i>)
             refers to the horizontal gradient in the forecast (observations).
           </p>
           <p>
             <b>Answers the question: </b><i>How well did the forecast gradients
               correspond to the observed gradients?</i>
           </p>
-          <p><b>Range:</b> 0 to ∞.&nbsp; <b>Perfect score:</b> 0.
+          <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
           </p>
           <p><b>Characteristics:</b> It is usually applied to geopotential height
             or sea level pressure fields in meteorology. Long historical records in
@@ -1575,7 +1615,7 @@ More scores:<br>
               forecast over that of climatology, in terms of predicting whether or
               not an event occurred?</i>
           </p>
-          <p><b>Range:</b> -∞ to 1, 0 indicates no skill when compared
+          <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill when compared
             to the reference forecast. <b>Perfect score:</b> 1.
           </p>
           <p><b>Characteristics:</b> Measures the improvement of the probabilistic
@@ -1695,7 +1735,7 @@ More scores:<br>
               the probability forecast over climatology in predicting the category
               that the observations fell into?</i>
           </p>
-          <p><b>Range:</b> -∞ to 1, 0 indicates no skill when
+          <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill when
             compared to the reference forecast. <b>Perfect score:</b> 1.
           </p>
           <p><b>Characteristics:</b> Measures the improvement of the
@@ -1714,19 +1754,19 @@ More scores:<br>
             $$V = \frac{E_{\text{clim}} - E}{E_{\text{clim}} - E_{\text{perfect}}}$$
           </p>
           <p class="equation">
-            $$E = \min\left(\frac{C}{L}, o\right) \cdot L$$
+            $$E = \min\left(\frac{C}{L}, y\right) \cdot L$$
           </p>
           <p class="equation">
-            $$E_{\text{clim}} = \min\left(\frac{C}{L}, \bar{o}\right) \cdot L$$
+            $$E_{\text{clim}} = \min\left(\frac{C}{L}, \bar{y}\right) \cdot L$$
           </p>
           <p class="equation">
-            $$E_{\text{perfect}} = \bar{o} \cdot C$$
+            $$E_{\text{perfect}} = \bar{y} \cdot C$$
           </p>
           <p><b>Answers the question: </b><i>For a <a href="site/value/relativevalue_more.html">cost/loss
                 ratio</a> C/L for taking action based on a forecast, what is the relative improvement
               in economic value between climatalogical and perfect information?</i>
           </p>
-          <p><b>Range:</b> -∞ to 1.&nbsp; <b>Perfect score:</b> 1.
+          <p><b>Range:</b> \(-\infty\) to 1.&nbsp; <b>Perfect score:</b> 1.
           </p>
           <p><b>Characteristics:</b> The relative value is a skill score of
             expected expense, with climatology as the reference forecast. Because the
@@ -2303,7 +2343,7 @@ More scores:<br>
         <li>orientation of the major axis, <i>θ</i>.</li>
       </ul>
       where <i>a</i> and <i>b</i> are the semi-major and semi-minor axes of the ellipse.
-      <p><b><i>Range:</i></b> <i>σ</i> ∈ [0,∞), <i>ε</i> ∈ [0,1], <i>θ</i> ∈ [0,<i>π</i>)&nbsp;&nbsp;&nbsp;
+      <p><b><i>Range:</i></b> <i>σ</i> ∈ [0,\(\infty\)), <i>ε</i> ∈ [0,1], <i>θ</i> ∈ [0,<i>π</i>)&nbsp;&nbsp;&nbsp;
         <b><i>Perfect Score:</i></b> for a vector error&nbsp; <i>σ</i> = 0, <i>ε</i> = 0
       </p>
       <p><b><i>Characteristics:</i></b>
@@ -2319,7 +2359,7 @@ More scores:<br>
         <p><a id="RMSF"></a><b><i>Root mean squared factor</i></b> &nbsp;
           (<a href="index.html#Golding_1998">Golding, 1998</a>)</p>
         <p class="equation">
-          $$\text{RMSF} = \exp\left[\sqrt{\frac{1}{n}\sum_{i=1}^{n}[\ln(f_i) - \ln(o_i)]^2}\right]$$
+          $$\text{RMSF} = \exp\left[\sqrt{\frac{1}{n}\sum_{i=1}^{n}[\ln(x_i) - \ln(y_i)]^2}\right]$$
         </p>
       </div>
       <p><b>Answers the question:</b><i> What is the average multiplicative error?</i>
@@ -2346,13 +2386,13 @@ More scores:<br>
         <p><b><i>Nash-Sutcliffe efficiency coefficient </i></b>
           (<a href="index.html#Nash_Sutcliffe_1970">Nash and Sutcliffe, 1970</a>)</p>
         <p class="equation">
-          $$E = 1 - \frac{\sum_{i=1}^{n}(f_i - o_i)^2}{\sum_{i=1}^{n}(o_i - \bar{o})^2}$$
+          $$E = 1 - \frac{\sum_{i=1}^{n}(x_i - y_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}$$
         </p>
       </div>
       <p><b>Answers the question:</b><i> How well does the forecast predict
           the observed time series?</i>
       </p>
-      <p><b>Range:</b> -∞ to 1.&nbsp; <b>Perfect score:</b> 1.
+      <p><b>Range:</b> \(-\infty\) to 1.&nbsp; <b>Perfect score:</b> 1.
       </p>
       <p><b>Characteristics:</b> Frequently used to quantify the accuracy of
         hydrological predictions. If \(E = 0\) then the model forecast is no more
