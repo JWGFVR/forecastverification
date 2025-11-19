@@ -497,7 +497,7 @@ More scores:<br>
         A note on notation: In the equations below, we use the following
         notation:
         <ul>
-          <li>\(x\) = forecast value of a single-valued forecast</li>
+          <li>\(x\) = forecast value of a single-valued forecast (including the probability of a binary event</li>
           <li>\(F\) = the cumulative density function (CDF) of a random variable</li>
           <li>\(y\) = observation value</li>
         </ul>
@@ -1534,8 +1534,8 @@ More scores:<br>
           <p>A probabilistic forecast gives a <i>probability</i> of an event occurring,
             with a value between 0 and 1 (or 0 and 100%). In general, it is difficult
             to verify a single probabilistic forecast. Instead, a set of probabilistic
-            forecasts, \(p_i\), is verified using observations that those
-            events either occurred (\(o_i = 1\)) or did not occur (\(o_i = 0\)).
+            forecasts, \(x_i\), is verified using observations that those
+            events either occurred (\(y_i = 1\)) or did not occur (\(y_i = 0\)).
           </p>
           <p>An accurate probability forecast system has:
           </p>
@@ -1586,7 +1586,7 @@ More scores:<br>
           <div>
             <p><b><i>Brier score</i></b></p>
             <p class="equation">
-              $$\text{BS} = \frac{1}{n}\sum_{i=1}^{n}(p_i - o_i)^2 = \text{reliability} - \text{resolution} + \text{uncertainty}$$
+              $$\text{BS} = \frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)^2 = \text{reliability} - \text{resolution} + \text{uncertainty}$$
             </p>
           </div>
           <p><b>Answers the question:</b><i> What is the magnitude of the probability
@@ -1652,7 +1652,7 @@ More scores:<br>
             calibration. The ROC can thus be considered as a measure of potential usefulness.
             <br>
             The ROC is conditioned on the observations (i.e., given that an event occurred,
-            what was the correponding forecast?)&nbsp; It is therefore a good companion
+            what was the corresponding forecast?)&nbsp; It is therefore a good companion
             to the <a href="index.html#reliability">reliability diagram</a>, which is
             conditioned on the forecasts.
             <br>
@@ -1675,7 +1675,7 @@ More scores:<br>
           <p>Perfect discrimination is when there is no overlap between the distributions of
             forecast probabilities for observed events and non-events. As with the
             <a href="index.html#ROC">ROC</a> the discrimination diagram is conditioned on the observations
-            (i.e., given that an event occurred what was the correponding forecast?)&nbsp;
+            (i.e., given that an event occurred what was the corresponding forecast?)&nbsp;
             Some users may find the discrimination diagram easier to understand than the ROC.
           </p>
           <p><a id="RPS"></a>- - - - - - - - - - -
@@ -1683,11 +1683,11 @@ More scores:<br>
           <div>
             <p><b><i>Ranked probability score</i></b></p>
             <p class="equation">
-              $$\text{RPS} = \frac{1}{M-1}\sum_{k=1}^{M}\left[\sum_{m=1}^{k}(p_m - o_m)\right]^2$$
+              $$\text{RPS} = \frac{1}{M-1}\sum_{k=1}^{M}\left[\sum_{m=1}^{k}(x_m - y_m)\right]^2$$
             </p>
           </div>
-          <p>where \(M\) is the number of forecast categories, \(p_k\)
-            is the predicted probability in forecast category \(k\), and \(o_k\)
+          <p>where \(M\) is the number of forecast categories, \(x_k\)
+            is the predicted probability in forecast category \(k\), and \(y_k\)
             is an indicator (0=no, 1=yes) for the observation in category \(k\).
           </p>
           <p><b>Answers the question:</b><i> How well did the probability forecast
@@ -1707,8 +1707,9 @@ More scores:<br>
           <div>
             <p><b><i>Continuous ranked probability score</i></b></p>
             <p class="equation">
-              $$\text{CRPS} = \int_{-\infty}^{\infty}[F(x) - F_o(x)]^2 dx$$
+              $$\text{CRPS}(F, y) = \int_{-\infty}^{\infty}(F(x) - \mathbf{1}\{y \leq x\})^2 dx$$
             </p>
+            <p>Where \(\mathbf{1}\{\cdot\}\) denotes the indicator function: \(\mathbf{1}\{P\}=1\) if the predicate \(P\) is true and \(0\) otherwise. In the CRPS formula \(\mathbf{1}\{y \le x\}\) equals 1 when the observation \(y\) is less than or equal to \(x\), and 0 otherwise.</p>
           </div>
           <p><b>Answers the question:</b><i> How well did the probability forecast
               predict the value of the observation?</i>
@@ -1751,16 +1752,10 @@ More scores:<br>
               Richardson, 2000</a>; <a href="index.html#Wilks_2001">Wilks, 2001</a>)&nbsp;
           </p>
           <p class="equation">
-            $$V = \frac{E_{\text{clim}} - E}{E_{\text{clim}} - E_{\text{perfect}}}$$
-          </p>
-          <p class="equation">
-            $$E = \min\left(\frac{C}{L}, y\right) \cdot L$$
-          </p>
-          <p class="equation">
-            $$E_{\text{clim}} = \min\left(\frac{C}{L}, \bar{y}\right) \cdot L$$
-          </p>
-          <p class="equation">
-            $$E_{\text{perfect}} = \bar{y} \cdot C$$
+            $$V = \begin{cases}
+            \frac{\frac{C}{L}(\text{hits} + \text{false alarms} - 1) + \text{misses}}{\frac{C}{L}(P_{\text{clim}} - 1)} & \text{if } \frac{C}{L} < P_{\text{clim}} \\[3ex]
+            \frac{\frac{C}{L}(\text{hits} + \text{false alarms}) + \text{misses} - P_{\text{clim}}}{P_{\text{clim}}\left(\frac{C}{L} - 1\right)} & \text{if } \frac{C}{L} \geq P_{\text{clim}}
+            \end{cases}$$
           </p>
           <p><b>Answers the question: </b><i>For a <a href="site/value/relativevalue_more.html">cost/loss
                 ratio</a> C/L for taking action based on a forecast, what is the relative improvement
@@ -1894,10 +1889,10 @@ More scores:<br>
         framed as a Fractions Skill Score
       </p>
       <p class="equation">
-        $$\text{FSS} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(P_{f,i} - P_{o,i})^2}{\frac{1}{N}\sum_{i=1}^{N}P_{f,i}^2 + \frac{1}{N}\sum_{i=1}^{N}P_{o,i}^2}$$
+        $$\text{FSS} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(P_{x,i} - P_{y,i})^2}{\frac{1}{N}\sum_{i=1}^{N}P_{x,i}^2 + \frac{1}{N}\sum_{i=1}^{N}P_{y,i}^2}$$
       </p>
-      <p>where \(P_f\) is the forecast fraction,
-        \(P_o\) is the observed fraction, and \(N\)
+      <p>where \(P_x\) is the forecast fraction,
+        \(P_y\) is the observed fraction, and \(N\)
         is the number of spatial windows in the domain.
       </p>
       <p>FSS has the following properties:</p>
@@ -1907,8 +1902,8 @@ More scores:<br>
           none are forecast the score is always 0.</li>
         <li>The value of FSS above which the forecasts are considered to have useful
           (better than random) skill is given by
-          \(\text{FSS}_{\text{useful}} = 0.5 + f_o/2\), where
-          \(f_o\) is the domain average observed fraction. The smallest
+          \(\text{FSS}_{\text{useful}} = 0.5 + f_y/2\), where
+          \(f_y\) is the domain average observed fraction. The smallest
           window size for which \(\text{FSS} \geq \text{FSS}_{\text{useful}}\) can be considered
           the "skillful scale".
         </li>
@@ -2180,12 +2175,12 @@ More scores:<br>
           (<a href="index.html#Stensrud_and_Wandishin_2000">Stensrud and Wandishin, 2000</a>)
         </p>
         <p class="equation">
-          $$\text{CR} = \frac{\sum_i \min(F_{1,i}, F_{2,i}, ..., F_{M,i}, O_i)}{\sum_i \max(F_{1,i}, F_{2,i}, ..., F_{M,i}, O_i)}$$
+          $$CR = \frac{\text{area of intersection}}{\text{area of union}} = \frac{\sum_{i=1}^{N} x_{1,i} \cap x_{2,i} \cap x_{3,i} \cap ... \cap x_{m,i} \cap y_i}{\sum_{i=1}^{N} x_{1,i} \cup x_{2,i} \cup x_{3,i} \cup ... \cup x_{m,i} \cup y_i}$$
         </p>
         <img src="site/Venn.gif" alt="Venn diagram showing intersection of three areas" width="119" height="135">
       </div>
-      <p>where \(F_{m,i}\) is the value of forecast \(m\) at gridpoint \(i\),
-        and \(O_i\) is the corresponding observed value. In the diagram \(CR\)
+      <p>where \(x_{m,i}\) is the value of forecast \(m\) at gridpoint \(i\),
+        and \(y_i\) is the corresponding observed value. In the diagram \(CR\)
         is the ratio of the dark area to the total shaded area. Click
         <a href="site/CorrespondenceRatio.html">here</a> to learn more.
       </p>
@@ -2205,12 +2200,12 @@ More scores:<br>
       </p>
       <p>The logarithmic scoring rule can be defined as
         follows: If there are \(n\) (mutually exclusive) possible
-        outcomes and \(f_i\) (\(i = 1, \ldots, n\)) is the
+        outcomes and \(x_i\) (\(i = 1, \ldots, n\)) is the
         predicted probability of the \(i\)th
         outcome occurring then if the \(j\)th outcome is the
         one which actually occurs the score for this particular
         forecast-realization pair is given by</p>
-      <p class="center">$$\text{IGN} = -\log_2 f_j$$
+      <p class="center">$$\text{IGN} = -\log_2 x_j$$
       </p>
       <p>
         As defined above, with a negative sign, the logarithmic score cannot be negative and
@@ -2229,25 +2224,25 @@ More scores:<br>
       <div>
         <p><b><i>Extreme dependency score</i></b></p>
         <p class="equation">
-          $$\text{EDS} = \frac{2\log(p)}{\log(Hq)}$$
+          $$\text{EDS} = \frac{2\log\left(\frac{\text{hits} + \text{misses}}{\text{total}}\right)}{\log\left(\frac{\text{hits}}{\text{total}}\right)} - 1 = \frac{\ln p - \ln H}{\ln p + \ln H}$$
         </p>
       </div>
       <div>
         <p><b><i>Symmetric extreme dependency score</i></b></p>
         <p class="equation">
-          $$\text{SEDS} = \frac{\log(p) + \log(q)}{\log(Hq) + \log(H(1-p))}$$
+          $$\text{SEDS} = \frac{\ln\left(\frac{\text{hits}_{\text{random}}}{\text{hits}}\right)}{\ln\left(\frac{\text{hits}}{\text{total}}\right)} = \frac{\ln q - \ln H}{\ln p + \ln H}$$
         </p>
       </div>
       <div>
         <p><b><i>Extremal dependence index</i></b></p>
         <p class="equation">
-          $$\text{EDI} = \frac{\log(F) - \log(H)}{\log(F) + \log(H)}$$
+          $$\text{EDI} = \frac{\ln F - \ln H}{\ln F + \ln H}$$
         </p>
       </div>
       <div>
         <p><b><i>Symmetric extremal dependence index</i></b></p>
         <p class="equation">
-          $$\text{SEDI} = \frac{\log(F) - \log(H) + \log(1-H) - \log(1-F)}{\log(F) + \log(H) + \log(1-H) + \log(1-F)}$$
+          $$\text{SEDI} = \frac{\ln F - \ln H + \ln(1-H) - \ln(1-F)}{\ln F + \ln H + \ln(1-H) + \ln(1-F)}$$
         </p>
       </div>
       <p>where \(p = (\text{hits} + \text{misses})/\text{total}\) is the base rate (climatology),
