@@ -2324,16 +2324,16 @@ More scores:<br>
       <br>
       <p><b>Answers the question: </b><i>How does the vector error between
           the model and observation vary about the mean vector error (i.e., bias)?</i></p>
-      <p>In the diagram to the right, the mean vector error is represented by \(\bar{\mathbf{e}}\).
+      <p>In the diagram to the right, the mean vector error is represented by \(\bar{\mathbf{A}}=\bar{\mathbf{X}}-\bar{\mathbf{Y}}\).
         <br>The error variance ellipse may be represented by: &nbsp;
         <img src="site/VarianceEllipse_medium.gif" alt="Error variance ellipse" width="335" height="263" class="right">
       </p>
       <ul>
         <li>
-          <p>standard deviation, \(\sigma = \sqrt{\lambda_1}\)</p>
+          <p>standard deviation, \(\sigma = \sqrt{a^2 + b^2}\)</p>
         </li>
         <li>
-          <p>eccentricity, \(\varepsilon = \sqrt{1 - \lambda_2/\lambda_1}\)</p>
+          <p>eccentricity, \(\varepsilon = \sqrt{1 - (b/a)^2}\)</p>
         </li>
         <li>orientation of the major axis, <i>θ</i>.</li>
       </ul>
@@ -2354,7 +2354,7 @@ More scores:<br>
         <p><a id="RMSF"></a><b><i>Root mean squared factor</i></b> &nbsp;
           (<a href="index.html#Golding_1998">Golding, 1998</a>)</p>
         <p class="equation">
-          $$\text{RMSF} = \exp\left[\sqrt{\frac{1}{n}\sum_{i=1}^{n}[\ln(x_i) - \ln(y_i)]^2}\right]$$
+          $$\text{RMSF} = \exp\left(\sqrt{\frac{1}{N}\sum_{i=1}^{N}\left[\log\left(\frac{x_i}{y_i}\right)\right]^2}\right)$$
         </p>
       </div>
       <p><b>Answers the question:</b><i> What is the average multiplicative error?</i>
@@ -2365,8 +2365,9 @@ More scores:<br>
         Whereas the RMS error can be interpreted as giving a scale to the additive
         error, i.e., <b><i>f</i></b> = <b><i>o</i></b> ± <b><i>RMS</i></b>, the RMSF
         can be interpreted as giving a scale to the multiplicative error, i.e.,
-        <b><i>f</i></b> = <b><i>o</i></b> ×/÷ <b><i>RMSF</i></b> (read: "multiplied or divided
-        by"), which is a more appropriate measure of accuracy for some variables
+        <span class="equation">\(x = y \times/\div\ \mathrm{RMSF}\)</span>
+        <span>(read: "multiplied or divided by")</span>
+        which is a more appropriate measure of accuracy for some variables
         and more intuitively meaningful than the RMS log error. In order to
         avoid assigning skill to trivial forecasts, statistics are only accumulated
         where either the forecast or observations are within specified limits. For
@@ -2431,7 +2432,7 @@ More scores:<br>
         <a id="alpha_index"></a>
         <p><b><i>Alpha Index</i></b> (<a href="index.html#Koh_Ng_2009">Koh and Ng, 2009</a>)</p>
         <p class="equation">
-          $$\alpha = \frac{\sigma_e^2}{\sigma_f^2 + \sigma_o^2}$$
+          $$\alpha = \frac{\sum(x - y - \bar{x} + \bar{y})^2}{\sum(x - \bar{x})^2 + \sum(y - \bar{y})^2}$$
         </p>
       </div>
       <p><b>Answers the question:</b><i> How does the random error of a
