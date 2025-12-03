@@ -119,9 +119,9 @@ More scores:<br>
           These data will be available for download if you want to try out some of
           the techniques.</li>
         <li>Does not provide source code. However, see below for a list of
-            <a href="#Tools">freely available verification tools and packages</a>
-            that provide implementations and code for a wide variety of metrics, ranging from
-            simple to complex, in multiple languages.
+          <a href="#Tools">freely available verification tools and packages</a>
+          that provide implementations and code for a wide variety of metrics, ranging from
+          simple to complex, in multiple languages.
         </li>
         <li>Is a <b><i>dynamic site</i></b> - please contribute your ideas and
           verification methods, also suggestions for making the site better. To contribute,
@@ -496,11 +496,13 @@ More scores:<br>
       <p>
         A note on notation: In the equations below, we use the following
         notation:
-        <ul>
-          <li>\(x\) = forecast value of a single-valued forecast (including the probability of a binary event</li>
-          <li>\(F\) = the cumulative density function (CDF) of a random variable</li>
-          <li>\(y\) = observation value</li>
-        </ul>
+      <ul>
+        <li>For probabilistic forecasts, \(F\) = the cumulative density function (CDF) of a random variable.</li>
+        <li>For dichotomous (yes/no) forecasts, \(F\) is used to denote the false alarm rate (probability of false
+          detection.</li>
+        <li>\(x\) = forecast value of a single-valued forecast (including the probability of a binary event).</li>
+        <li>\(y\) = observation value.</li>
+      </ul>
       </p>
 
       <h2 id="Dichotomous">Methods for dichotomous (yes/no) forecasts</h2>
@@ -645,9 +647,9 @@ More scores:<br>
       <p><a id="BIAS"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i>Bias score (frequency bias)</i></b></p>
+        <p><b><i>Frequency bias (bias score)</i></b></p>
         <p class="equation">
-          $$\text{BIAS} = \frac{\text{hits} + \text{false alarms}}{\text{hits} + \text{misses}}$$
+          $$\text{FBI} = \frac{\text{hits} + \text{false alarms}}{\text{hits} + \text{misses}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>How did the forecast frequency of "yes"
@@ -785,11 +787,13 @@ More scores:<br>
       <div>
         <p><b><i>Equitable threat score (Gilbert skill score)</i></b> &nbsp;(also denoted&nbsp;<i>GSS</i>)</p>
         <p class="equation">
-          $$\text{ETS} = \frac{\text{hits} - \text{hits}_{\text{random}}}{\text{hits} + \text{misses} + \text{false alarms} - \text{hits}_{\text{random}}}$$
+          $$\text{ETS} = \frac{\text{hits} - \text{hits}_{\text{random}}}{\text{hits} + \text{misses} + \text{false
+          alarms} - \text{hits}_{\text{random}}}$$
         </p>
         <p>where&nbsp;<a id="random_hits"></a></p>
         <p class="equation">
-          $$\text{hits}_{\text{random}} = \frac{(\text{hits} + \text{misses})(\text{hits} + \text{false alarms})}{\text{total}}$$
+          $$\text{hits}_{\text{random}} = \frac{(\text{hits} + \text{misses})(\text{hits} + \text{false
+          alarms})}{\text{total}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>How well did the forecast "yes" events
@@ -813,9 +817,11 @@ More scores:<br>
       <p><a id="HK"></a>- - - - - - - - - - -
       </p>
       <div>
-        <p><b><i>Hanssen and Kuipers discriminant (true skill statistic, Peirce's skill score)</i></b> &nbsp;(also denoted&nbsp;<i>TSS</i> &nbsp;and&nbsp;<i>PSS</i>)</p>
+        <p><b><i>Hanssen and Kuipers discriminant (true skill statistic, Peirce's skill score)</i></b> &nbsp;(also
+          denoted&nbsp;<i>TSS</i> &nbsp;and&nbsp;<i>PSS</i>)</p>
         <p class="equation">
-          $$\text{HK} = \frac{\text{hits}}{\text{hits} + \text{misses}} - \frac{\text{false alarms}}{\text{false alarms} + \text{correct negatives}}$$
+          $$\text{HK} = \frac{\text{hits}}{\text{hits} + \text{misses}} - \frac{\text{false alarms}}{\text{false alarms}
+          + \text{correct negatives}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>How well did the forecast separate
@@ -840,17 +846,19 @@ More scores:<br>
       <div>
         <p><b><i>Heidke skill score (Cohen's κ)</i></b></p>
         <p class="equation">
-          $$\text{HSS} = \frac{\text{hits} + \text{correct negatives} - E_{\text{correct_random}}}{\text{total} - E_{\text{correct_random}}}$$
+          $$\text{HSS} = \frac{\text{hits} + \text{correct negatives} - E_{\text{correct_random}}}{\text{total} -
+          E_{\text{correct_random}}}$$
         </p>
         <p><b><i>where&nbsp;</i></b></p>
         <p class="equation">
-          $$E_{\text{correct_random}} = \frac{(\text{hits} + \text{misses})(\text{hits} + \text{false alarms}) + (\text{correct negatives} + \text{misses})(\text{correct negatives} + \text{false alarms})}{\text{total}}$$
+          $$E_{\text{correct_random}} = \frac{(\text{hits} + \text{misses})(\text{hits} + \text{false alarms}) +
+          (\text{correct negatives} + \text{misses})(\text{correct negatives} + \text{false alarms})}{\text{total}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What was the accuracy of the forecast
           relative to that of random chance?</i>
       </p>
-      <p><b>Range:</b> -1 to 1, 0 indicates no skill.&nbsp; <b>Perfect score:</b> 1.
+      <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill.&nbsp; <b>Perfect score:</b> 1.
       </p>
       <p><b>Characteristics:</b> Measures the fraction of correct forecasts
         after eliminating those forecasts which would be correct due purely to random
@@ -870,12 +878,12 @@ More scores:<br>
         <p><b><i>Odds ratio</i></b></p>
         <p class="equation">
           \[
-          \text{OR} 
+          \text{OR}
           = \frac{\text{hits} \cdot \text{correct negatives}}
-                {\text{misses} \cdot \text{false alarms}}
-          = 
+          {\text{misses} \cdot \text{false alarms}}
+          =
           \frac{\left(\dfrac{\text{POD}}{1-\text{POD}}\right)}
-              {\left(\dfrac{\text{POFD}}{1-\text{POFD}}\right)}
+          {\left(\dfrac{\text{POFD}}{1-\text{POFD}}\right)}
           \]
         </p>
       </div>
@@ -884,7 +892,8 @@ More scores:<br>
       </p>
       <p><b>Odds ratio - Range:</b> 0 to \(\infty\), 1 indicates no skill. <b>Perfect score:</b> \(\infty\)
         <br>
-        <b>Log odds ratio - Range:</b> \(-\infty\) to \(\infty\), 0 indicates no skill.&nbsp; <b>Perfect score:</b> \(\infty\)
+        <b>Log odds ratio - Range:</b> \(-\infty\) to \(\infty\), 0 indicates no skill.&nbsp; <b>Perfect score:</b>
+        \(\infty\)
       </p>
       <p><b>Characteristics:</b> Measures the ratio of the odds of making a
         hit to the odds of making a false alarm. The logarithm of the odds ratio is
@@ -909,7 +918,8 @@ More scores:<br>
       <div>
         <p><b><i>Odds ratio skill score (Yule's Q)</i></b></p>
         <p class="equation">
-          $$\text{ORSS} = \frac{\text{hits} \times \text{correct negatives} - \text{misses} \times \text{false alarms}}{\text{hits} \times \text{correct negatives} + \text{misses} \times \text{false alarms}}$$
+          $$\text{ORSS} = \frac{\text{hits} \cdot \text{correct negatives} - \text{misses} \cdot \text{false
+          alarms}}{\text{hits} \cdot \text{correct negatives} + \text{misses} \cdot \text{false alarms}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What was the improvement of the forecast
@@ -1001,7 +1011,7 @@ More scores:<br>
         of forecasts in category \(i\) that had observations in category \(j\),
         \(N(x_i)\) denotes the total number of forecasts in category
         \(i\), \(N(y_j)\) denotes the total number of observations in
-        category \(j\), and \(N\) is the total number of forecasts.
+        category \(j\), \(K\) is the number of categories, and \(N\) is the total number of forecasts.
       </p>
       <p>The <i>distributions approach</i> to forecast verification examines
         the relationship among the elements in the multi-category contingency
@@ -1097,31 +1107,6 @@ More scores:<br>
         climatology (long-term average value) or persistence (forecast is most recent
         observation, i.e., no change) or some other standard.
       </p>
-      <p><a id="HKmulti"></a>- - - - - - - - - - -
-      </p>
-      <div>
-        <p><b><i>Hanssen and Kuipers discriminant (true skill statistic, Peirce's skill score)</i></b></p>
-        <p class="equation">
-          $$\text{HK} =
-          \frac{
-          \frac{1}{N}\sum_{i=1}^{k} n(x_i, y_i)
-          -
-          \frac{1}{N^2}\sum_{i=1}^{k} N(x_i) \, N(y_i)
-          }{
-          1 -
-          \frac{1}{N^2}\sum_{i=1}^{k} \left( N(y_i) \right)^2
-          }.$$
-        </p>
-      </div>
-      <p><b>Answers the question: </b><i>What was the accuracy of the
-          forecast in predicting the correct category, relative to that of random chance?</i>
-      </p>
-      <p><b>Range:</b> -1 to 1, 0 indicates no skill. <b>Perfect score:</b> 1
-      </p>
-      <p><b>Characteristics:</b> Similar to the Heidke skill score (above),
-        except that in the denominator the fraction of correct forecasts due to random
-        chance is for an unbiased forecast.
-      </p>
       <p><a id="Gerrity"></a>- - - - - - - - - - -
       </p>
       <div>
@@ -1132,10 +1117,12 @@ More scores:<br>
       </div>
       where \(s_{ij}\) are elements of a scoring matrix given by
       <p class="equation">
-        $$s_{ii} = \frac{1}{K-1}\left(\sum_{r=1}^{i-1} a_r^{-1} + \sum_{r=i}^{K-1} a_r\right) \quad (i = j, \text{ diagonal})$$
+        $$s_{ii} = \frac{1}{K-1}\left(\sum_{r=1}^{i-1} a_r^{-1} + \sum_{r=i}^{K-1} a_r\right) \quad (i = j, \text{
+        diagonal})$$
       </p>
       <p class="equation">
-        $$s_{ij} = s_{ji} = \frac{1}{K-1}\left(\sum_{r=1}^{i-1} a_r^{-1} - (j-i) + \sum_{r=j}^{K-1} a_r\right) \quad (i \neq j, \text{ off-diagonal})$$
+        $$s_{ij} = s_{ji} = \frac{1}{K-1}\left(\sum_{r=1}^{i-1} a_r^{-1} - (j-i) + \sum_{r=j}^{K-1} a_r\right) \quad (i
+        \neq j, \text{ off-diagonal})$$
       </p>
       <p class="equation">
         $$a_i = \left(1 - \sum_{r=1}^{i} p_r\right) \bigg/ \sum_{r=1}^{i} p_r$$
@@ -1276,7 +1263,7 @@ More scores:<br>
         correspondence between forecasts and observations, i.e., it is possible
         to get a perfect score for a bad forecast if there are compensating errors.
       </p>
-      <p class="green">In the example above, <i>Mean Error</i> = 0.8C
+      <p class="green">In the example above, <i>ME</i> = 0.8C
       </p>
       <p><a id="multiplicative_bias"></a>- - - - - - - - - - -
       </p>
@@ -1356,407 +1343,392 @@ More scores:<br>
       </p>
       <p class="green">In the example above, <i>MSE</i> = 10 degrees squared
       </p>
-      <p><a id="LEPS"></a>- - - - - - - - - - -
+      <p><a id="SEEPS"></a>- - - - - - - - - - -
       </p>
+      <img src="site/SEEPSdiagram.gif" alt="SEEPS diagram" width="288" height="282" class="right">
       <div>
-      <p><b><i><a href="site/LEPS.html">Linear error in probability space</a> (LEPS)</i></b></p>
-
+        <p><b><i>Stable equitable error in probability space (SEEPS)</i></b></p>
+        <p class="equation">
+          $$\text{SEEPS} = \frac{1}{N}\sum_{i=1}^{3}\sum_{j=1}^{3} n(x_i,y_j) s_{ij}$$
+        </p>
+      </div>
+      <p>where \(n(x_i, y_j)\) is the joint occurrence
+        of forecast category \(i\) and observed category \(j\) in
+        the 3x3 contingency table, and the scoring matrix is given by</p>
       <p class="equation">
-        $$\text{LEPS} = \frac{1}{n}\sum_{i=1}^{n}\bigl|F(x_i) - G(y_i)\bigr|$$
+        $$s_{ij} = \begin{bmatrix}
+        1 & 1 - \frac{1}{2(p_2 + p_3)} & 1 - \frac{1}{2p_3} - \frac{1}{2(p_2 + p_3)} \\
+        1 - \frac{1}{2p_1} & 1 & 1 - \frac{1}{2p_3} \\
+        1 - \frac{1}{2p_1} - \frac{1}{2(p_1 + p_2)} & 1 - \frac{1}{2(p_1 + p_2)} & 1
+        \end{bmatrix}$$
       </p>
 
-      <img src="site/LEPSdiagram.gif" alt="LEPS diagram" width="370" height="243" class="right">
-
-      <p>
-        Measures the error in probability space as opposed to measurement space,
-        where \(G\) is the cumulative distribution function of
-        the observations, determined from an appropriate climatology.
+      <p>SEEPS measures the error in probability space as opposed to measurement
+        space. It was developed to assess rainfall forecasts,
+        where \((1-p_1)\) is the climatological probability of
+        rain (i.e., accumulation exceeding 0.2 mm, following WMO guidelines),
+        and \(p_2 = 2p_3\) divides the
+        climatological cumulative rainfall into "light" (lower 2/3 of rain rates ≥0.2 mm) and "heavy"
+        (upper 1/3 of rain rates ≥0.2 mm). Refer to diagram at right, where \(t_{L/H}\)
+        is the threshold delineating "light" and "heavy" rain.
       </p>
       <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
       </p>
-      <p><b>Characteristics:</b> Does not discourage forecasting extreme
-        values if they are warranted. Requires knowledge of climatological PDF. Not
-        yet in wide usage --&nbsp; <a href="index.html#Potts_et_al_1996">Potts et al. (1996)</a>
-        derived an improved version of the LEPS score that is equitable and
-        does not "bend back" (give better scores for worse forecasts near the extremes):</p>
+      <p><b>Characteristics:</b> Encourages forecasting of all categories.
+        Resistent to hedging. Requires knowledge of climatological PDF.
+        1-SEEPS may be preferred as it is positively oriented. Use of locally derived thresholds
+        allows aggregation/comparison of scores across climatologically varying regimes.
+        For further stability require \(0.1 < p_1 < 0.85\), that is, climate not too dry or too wet so that rain (or no
+          rain) is an extreme event. For more information see <a href="index.html#Rodwell_et_al_2010">Rodwell et al.
+          (2010)</a>.
+      </p>
+      <p><a id="corr"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Correlation coefficient</i></b></p>
         <p class="equation">
-        $$\text{LEPS} = 3 \left\{ 1 - \left| G(x) - G(y) \right| + [G(x)]^2 - G(x) + [G(y)]^2 - G(y) \right\} - 1$$
-          <p class="green">In the example above, suppose the climatological
-            temperature is normally distributed with a mean of 14 C and variance of
-            50 C. Then according to the first expression, LEPS=0.106.
-          </p>
-          <p><a id="SEEPS"></a>- - - - - - - - - - -
-          </p>
-          <img src="site/SEEPSdiagram.gif" alt="SEEPS diagram" width="288" height="282" class="right">
-          <div>
-            <p><b><i>Stable equitable error in probability space (SEEPS)</i></b></p>
-            <p class="equation">
-              $$\text{SEEPS} = \frac{1}{N}\sum_{i=1}^{3}\sum_{j=1}^{3} n(x_i,y_j) s_{ij}$$
-            </p>
-          </div>
-          <p>where \(n(x_i, y_j)\) is the joint occurrence
-            of forecast category \(i\) and observed category \(j\) in
-            the 3x3 contingency table, and the scoring matrix is given by</p>
-          <p class="equation">
-            $$s_{ij} = \begin{bmatrix}
-            1 & 1 - \frac{1}{2(p_2 + p_3)} & 1 - \frac{1}{2p_3} - \frac{1}{2(p_2 + p_3)} \\
-            1 - \frac{1}{2p_1} & 1 & 1 - \frac{1}{2p_3} \\
-            1 - \frac{1}{2p_1} - \frac{1}{2(p_1 + p_2)} & 1 - \frac{1}{2(p_1 + p_2)} & 1
-            \end{bmatrix}$$
-          </p>
+          $$r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i -
+          \bar{x})^2}\sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}$$
+        </p>
+      </div>
+      <p><b>Answers the question: </b><i>How well did the forecast values
+          correspond to the observed values?</i>
+      </p>
+      <p><b>Range:</b> -1 to 1.&nbsp; <b>Perfect score:</b> 1.
+      </p>
+      <p><b>Characteristics:</b> Good measure of linear association or phase
+        error. Visually, the correlation measures how close the points of a
+        scatter plot are to a straight line. Does not take forecast bias into account --
+        it is possible for a forecast with large errors to still have a good
+        correlation coefficient with the observations. Sensitive to outliers.
+      </p>
+      <p class="green">In the example above, \(r = 0.914\)
+      </p>
+      <p><a id="AC"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Anomaly correlation</i></b></p>
+        <p class="equation">
+          $$\text{AC} = \frac{\sum (x - C)(y - C)}{\sqrt{\sum (x - C)^2} \sqrt{\sum (y - C)^2}}$$
+        </p>
+        <p>or for the centered version,</p>
+        <p class="equation">
+          $$\text{AC} = \frac{\sum \left[ (x - C) - \overline{(x - C)} \right] \left[ (y - C) - \overline{(y - C)}
+          \right]}{\sqrt{\sum \left[ (x - C) - \overline{(x - C)} \right]^2} \sqrt{\sum \left[ (y - C) - \overline{(y -
+          C)} \right]^2}}$$
+        </p>
+        <p>where \(C\) denotes the long-term climatological mean.</p>
+      </div>
+      <p><b>Answers the question: </b><i>How well did the forecast
+          anomalies correspond to the observed anomalies?</i>
+      </p>
+      <p><b>Range:</b> -1 to 1.&nbsp; <b>Perfect score:</b> 1.
+      </p>
+      <p><b>Characteristics:</b> Measures correspondence or phase difference
+        between forecast and observations, subtracting out the climatological
+        mean at each point, <i>C</i>, rather than the sample mean values. The
+        anomaly correlation is frequently used to verify output from numerical weather
+        prediction (NWP) models. <i>AC</i> is not sensitive to forecast bias,
+        so a good anomaly correlation does not guarantee accurate forecasts. Both
+        forms of the equation are in common use -- see <a href="index.html#Jolliffe_and_Stephenson_2012">Jolliffe
+          and Stephenson (2012)</a> or <a href="index.html#Wilks">Wilks (2011)</a> for further discussion.
+      </p>
+      <p class="green">In the example above, if the climatological temperature is 14 C,
+        then <i>AC</i> = 0.904. <i>AC</i> is more often used in spatial verification.
+      </p>
+      <p><a id="S1"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>S1 score</i></b></p>
+        <p class="equation">
+          $$S1 = \frac{\sum_{\text{adjacent pairs}} |\Delta x - \Delta y|}{\sum_{\text{adjacent pairs}} \max(|\Delta x|,
+          |\Delta y|)} \times 100$$
+        </p>
+      </div>
+      <p>where <i>Δx</i> (<i>Δy</i>)
+        refers to the horizontal gradient in the forecast (observations).
+      </p>
+      <p>
+        <b>Answers the question: </b><i>How well did the forecast gradients
+          correspond to the observed gradients?</i>
+      </p>
+      <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
+      </p>
+      <p><b>Characteristics:</b> It is usually applied to geopotential height
+        or sea level pressure fields in meteorology. Long historical records in
+        NWP showing improvement in model performance over the years. Because
+        <i>S1</i> depends only on gradients, good scores can be achieved even when the
+        forecast values are biased. Also depends on spatial resolution of the forecast.
+      </p>
+      <p><a id="skill"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><a id="Skill_score"></a><b><i>Skill score</i></b></p>
+        <p class="equation">
+          $$\text{SS} = \frac{\text{score}_{\text{forecast}} -
+          \text{score}_{\text{reference}}}{\text{score}_{\text{perfect}} - \text{score}_{\text{reference}}}$$
+        </p>
+      </div>
+      <p><b>Answers the question: </b><i>What is the relative improvement of
+          the forecast over some reference forecast?</i>
+      </p>
+      <p><b>Range:</b> Lower bound depends on what score is being used to
+        compute skill and what reference forecast is used, but upper bound is always 1;
+        0 indicates no improvement over the reference forecast. <b>Perfect score:</b> 1.
+      </p>
+      <p><b>Characteristics:</b> Implies information about the value or worth
+        of a forecast relative to an alternative (reference) forecast. In
+        meteorology the reference forecast is usually persistence (no change from most
+        recent observation) or climatology. The <i>skill score</i> can be unstable
+        for small sample sizes. When <i>MSE</i> is the score used in the above expression
+        then the resulting statistic is called the <b>reduction of variance</b>.
+      </p>
+      <p>- - - - - - - - - - -
+      </p>
+      <p>See also <a href="index.html#Spatial">Methods for
+          spatial forecasts</a> for more scientific/diagnostic techniques.<br>
+      </p>
+      <p>See also <a href="index.html#Other_methods">Other methods</a> for additional
+        scores for forecasts of continuous variables.
+      </p>
 
-          <p>Like LEPS, SEEPS measures the error in probability space as opposed to measurement
-            space. It was developed to assess rainfall forecasts,
-            where \((1-p_1)\) is the climatological probability of
-            rain (i.e., accumulation exceeding 0.2 mm, following WMO guidelines),
-            and \(p_2 = 2p_3\) divides the
-            climatological cumulative rainfall ht" (lower 2/3 of rain rates ≥0.2 mm) and "heavy"
-            (upper 1/3 of rain rates ≥0.2 mm). Refer to diagram at right, where \(t_{L/H}\)
-            is the threshold delineating "light" and "heavy" rain.
-          </p>
-          <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
-          </p>
-          <p><b>Characteristics:</b> Encourages forecasting of all categories.
-            Resistent to hedging. Requires knowledge of climatological PDF.
-            1-SEEPS may be preferred as it is positively oriented. Use of locally derived thresholds
-            allows aggregation/comparison of scores across climatologically varying regimes.
-            For further stability require \(0.1 < p_1 < 0.85\),
-            that is, climate not too dry or too wet so that rain (or no rain) is an extreme event.
-            For more information see <a href="index.html#Rodwell_et_al_2010">Rodwell et al. (2010)</a>.
-          </p>
-          <p><a id="corr"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Correlation coefficient</i></b></p>
-            <p class="equation">
-              $$r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2}\sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}$$
-            </p>
-          </div>
-          <p><b>Answers the question: </b><i>How well did the forecast values
-              correspond to the observed values?</i>
-          </p>
-          <p><b>Range:</b> -1 to 1.&nbsp; <b>Perfect score:</b> 1.
-          </p>
-          <p><b>Characteristics:</b> Good measure of linear association or phase
-            error. Visually, the correlation measures how close the points of a
-            scatter plot are to a straight line. Does not take forecast bias into account --
-            it is possible for a forecast with large errors to still have a good
-            correlation coefficient with the observations. Sensitive to outliers.
-          </p>
-          <p class="green">In the example above, \(r = 0.914\)
-          </p>
-          <p><a id="AC"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Anomaly correlation</i></b></p>
-            <p class="equation">
-              $$\text{AC} = \frac{\sum (x - C)(y - C)}{\sqrt{\sum (x - C)^2} \sqrt{\sum (y - C)^2}}$$
-            </p>
-            <p>or for the centered version,</p>
-            <p class="equation">
-              $$\text{AC} = \frac{\sum \left[ (x - C) - \overline{(x - C)} \right] \left[ (y - C) - \overline{(y - C)} \right]}{\sqrt{\sum \left[ (x - C) - \overline{(x - C)} \right]^2} \sqrt{\sum \left[ (y - C) - \overline{(y - C)} \right]^2}}$$
-            </p>
-            <p>where \(C\) denotes the climatological mean.</p>
-          </div>
-          <p><b>Answers the question: </b><i>How well did the forecast
-              anomalies correspond to the observed anomalies?</i>
-          </p>
-          <p><b>Range:</b> -1 to 1.&nbsp; <b>Perfect score:</b> 1.
-          </p>
-          <p><b>Characteristics:</b> Measures correspondence or phase difference
-            between forecast and observations, subtracting out the climatological
-            mean at each point, <i>C</i>, rather than the sample mean values. The
-            anomaly correlation is frequently used to verify output from numerical weather
-            prediction (NWP) models. <i>AC</i> is not sensitive to forecast bias,
-            so a good anomaly correlation does not guarantee accurate forecasts. Both
-            forms of the equation are in common use -- see <a href="index.html#Jolliffe_and_Stephenson_2012">Jolliffe
-              and Stephenson (2012)</a> or <a href="index.html#Wilks">Wilks (2011)</a> for further discussion.
-          </p>
-          <p class="green">In the example above, if the climatological temperature is 14 C,
-            then <i>AC</i> = 0.904. <i>AC</i> is more often used in spatial verification.
-          </p>
-          <p><a id="S1"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>S1 score</i></b></p>
-            <p class="equation">
-              $$S1 = \frac{\sum_{\text{adjacent pairs}} |\Delta x - \Delta y|}{\sum_{\text{adjacent pairs}} \max(|\Delta x|, |\Delta y|)} \times 100$$
-            </p>
-          </div>
-          <p>where <i>Δx</i> (<i>Δy</i>)
-            refers to the horizontal gradient in the forecast (observations).
-          </p>
-          <p>
-            <b>Answers the question: </b><i>How well did the forecast gradients
-              correspond to the observed gradients?</i>
-          </p>
-          <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
-          </p>
-          <p><b>Characteristics:</b> It is usually applied to geopotential height
-            or sea level pressure fields in meteorology. Long historical records in
-            NWP showing improvement in model performance over the years. Because
-            <i>S1</i> depends only on gradients, good scores can be achieved even when the
-            forecast values are biased. Also depends on spatial resolution of the forecast.
-          </p>
-          <p><a id="skill"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><a id="Skill_score"></a><b><i>Skill score</i></b></p>
-            <p class="equation">
-              $$\text{SS} = \frac{\text{score}_{\text{forecast}} - \text{score}_{\text{reference}}}{\text{score}_{\text{perfect}} - \text{score}_{\text{reference}}}$$
-            </p>
-          </div>
-          <p><b>Answers the question: </b><i>What is the relative improvement of
-              the forecast over some reference forecast?</i>
-          </p>
-          <p><b>Range:</b> Lower bound depends on what score is being used to
-            compute skill and what reference forecast is used, but upper bound is always 1;
-            0 indicates no improvement over the reference forecast. <b>Perfect score:</b> 1.
-          </p>
-          <p><b>Characteristics:</b> Implies information about the value or worth
-            of a forecast relative to an alternative (reference) forecast. In
-            meteorology the reference forecast is usually persistence (no change from most
-            recent observation) or climatology. The <i>skill score</i> can be unstable
-            for small sample sizes. When <i>MSE</i> is the score used in the above expression
-            then the resulting statistic is called the <b>reduction of variance</b>.
-          </p>
-          <p>- - - - - - - - - - -
-          </p>
-          <p>See also <a href="index.html#Spatial">Methods for
-              spatial forecasts</a> for more scientific/diagnostic techniques.<br>
-          </p>
-          <p>See also <a href="index.html#Other_methods">Other methods</a> for additional
-            scores for forecasts of continuous variables.
-          </p>
+      <h2 id="Probabilistic">Methods for probabilistic forecasts</h2>
 
-          <h2 id="Probabilistic">Methods for probabilistic forecasts</h2>
-
-          <p>A probabilistic forecast gives a <i>probability</i> of an event occurring,
-            with a value between 0 and 1 (or 0 and 100%). In general, it is difficult
-            to verify a single probabilistic forecast. Instead, a set of probabilistic
-            forecasts, \(x_i\), is verified using observations that those
-            events either occurred (\(y_i = 1\)) or did not occur (\(y_i = 0\)).
-          </p>
-          <p>An accurate probability forecast system has:
-          </p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp; <i>reliability</i> - agreement between
-            forecast probability and mean observed frequency
-            <br>
-            &nbsp;&nbsp;&nbsp;&nbsp; <i>sharpness</i> - tendency to forecast
-            probabilities near 0 or 1, as opposed to values clustered around the mean
-            <br>
-            &nbsp;&nbsp;&nbsp;&nbsp; <i>resolution</i> - ability of the forecast
-            to resolve the set of sample events into subsets with characteristically
-            different outcomes
-          </p>
-          <p><a id="reliability"></a>- - - - - - - - - - -
-          </p>
-          <img src="site/ReliabilityDiagram.gif" alt="Reliability diagram" width="326" height="321" class="right">
-          <p><b><i>Reliability diagram</i></b> - (called "attributes diagram"
-            when the no-resoloution and no-skill w.r.t. climatology lines are included).</p>
-          <p>The reliability diagram plots the observed frequency against the
-            forecast probability, where the range of forecast probabilities is divided into
-            <i>K</i> bins (for example, 0-5%, 5-15%, 15-25%, etc.). The sample size in each
-            bin is often included as a histogram or values beside the data points.
-          </p>
-          <p><b>Answers the question:</b><i> How well do the predicted
-              probabilities of an event correspond to their observed frequencies?</i>
-          </p>
-          <p><b>Characteristics:</b> Reliability is indicated by the proximity of
-            the plotted curve to the diagonal. The deviation from the diagonal gives
-            the <i>conditional bias</i>. If the curve lies below the line, this
-            indicates overforecasting (probabilities too high); points above the line
-            indicate underforecasting (probabilities too low). The flatter the curve in the
-            reliability diagram, the less resolution it has. A forecast of
-            climatology does not discriminate at all between events and non-events, and thus
-            has no resolution. Points between the "no skill" line and the diagonal
-            contribute positively to the <a href="index.html#BSS">Brier skill score</a>. The frequency
-            of forecasts in each probability bin (shown in the histogram) shows the
-            sharpness of the forecast.
-            <br>
-            The reliability diagram is conditioned on the forecasts (i.e., given
-            that an event was predicted, what was the outcome?), and can be expected to give
-            information on the real meaning of the forecast. It is a good partner
-            to the <a href="index.html#ROC">ROC</a>, which is conditioned on the observations. Some
-            users may find a reliability table (table of observed relative frequency associated with
-            each forecast probability) easier to understand than a reliability diagram.
-          </p>
-          <p><a id="BS"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Brier score</i></b></p>
-            <p class="equation">
-              $$\text{BS} = \frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)^2 = \text{reliability} - \text{resolution} + \text{uncertainty}$$
-            </p>
-          </div>
-          <p><b>Answers the question:</b><i> What is the magnitude of the probability
-              forecast errors?</i>
-          </p>
-          <p>Measures the mean squared probability error. <a href="index.html#Murphy_1973">Murphy
-              (1973)</a> showed that it could be partitioned into three terms: (1) <i>reliability</i>,
-            (2) <i>resolution</i>, and (3) <i>uncertainty</i>.
-          </p>
-          <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
-          </p>
-          <p><b>Characteristics:</b> Sensitive to climatological frequency of the
-            event: the more rare an event, the easier it is to get a good <i>BS</i>
-            without having any real skill. Negative orientation (smaller score
-            better) - can "fix" by subtracting <i>BS</i> from 1.
-          </p>
-          <p><a id="BSS"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Brier skill score</i></b></p>
-            <p class="equation">
-              $$\text{BSS} = 1 - \frac{\text{BS}}{\text{BS}_{\text{reference}}}$$
-            </p>
-          </div>
-          <p><b>Answers the question:</b><i> What is the relative skill of the probabilistic
-              forecast over that of climatology, in terms of predicting whether or
-              not an event occurred?</i>
-          </p>
-          <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill when compared
-            to the reference forecast. <b>Perfect score:</b> 1.
-          </p>
-          <p><b>Characteristics:</b> Measures the improvement of the probabilistic
-            forecast relative to a reference forecast (usually the long-term or
-            sample climatology), thus taking climatological frequency into account. Not
-            strictly proper. Unstable when applied to small data sets; the rarer the event,
-            the larger the number of samples needed.
-          </p>
-          <p><a id="ROC"></a>- - - - - - - - - - -
-          </p>
-          <img src="site/ROC.gif" alt="Relative operating characteristic (ROC)" width="292" height="299" class="right">
-          <p><b><i>Relative operating characteristic</i></b> -
-            Plot <i><a href="index.html#POD">hit
-                rate (POD)</a></i> vs <a href="index.html#POFD"><i>false alarm rate</i> (<i>F</i>)</a>,
-            using a set of increasing probability thresholds (for example, 0.05, 0.15,
-            0.25, etc.) to make the yes/no decision. The area under the ROC curve
-            is frequently used as a score.
-          </p>
-          <p><b>Answers the question:</b><i> What is the ability of the forecast
-              to discriminate between events and non-events?</i>
-          </p>
-          <p><i>ROC</i>: <b>Perfect:</b> Curve travels from bottom left to top
-            left of diagram, then across to top right of diagram. Diagonal line
-            indicates no skill.
-            <br>
-            <i>ROC area</i>:&nbsp; <b>Range:</b> 0 to 1, 0.5 indicates no skill.
-            <b>Perfect score:</b> 1
-          </p>
-          <p><b>Characteristics:</b> ROC measures the ability of the forecast to
-            discriminate between two alternative outcomes, thus measuring resolution.
-            It is not sensitive to bias in the forecast, so says nothing about reliability.
-            A biased forecast may still have good resolution and produce a good ROC
-            curve, which means that it may be possible to improve the forecast through
-            calibration. The ROC can thus be considered as a measure of potential usefulness.
-            <br>
-            The ROC is conditioned on the observations (i.e., given that an event occurred,
-            what was the corresponding forecast?)&nbsp; It is therefore a good companion
-            to the <a href="index.html#reliability">reliability diagram</a>, which is
-            conditioned on the forecasts.
-            <br>
-            More information on ROC can be found in <a href="index.html#Mason_1982">Mason
-              1982</a>, <a href="index.html#Jolliffe_and_Stephenson_2012">Jolliffe and Stephenson 2012</a> (ch.3),
-            and the <a href="https://wise.cgu.edu/wise-tutorials/tutorial-signal-detection-theory/">WISE site</a>.
-          </p>
-          <p><a id="Discrimination_diagram"></a>- - - - - - - - - - -
-          </p>
-          <img src="site/Discrimination_diagram.gif" alt="Discrimination diagram" width="377" height="194"
-            class="right">
-          <p><b><i>Discrimination diagram</i></b> - Plot the likelihood of each forecast probability
-            when the event occurred and when it did not occur. A summary score can be
-            computed as the absolute value of the difference between the mean values of
-            each distribution.
-          </p>
-          <p><b>Answers the question:</b><i> What is the ability of the forecast
-              to discriminate between events and non-events?</i>
-          </p>
-          <p>Perfect discrimination is when there is no overlap between the distributions of
-            forecast probabilities for observed events and non-events. As with the
-            <a href="index.html#ROC">ROC</a> the discrimination diagram is conditioned on the observations
-            (i.e., given that an event occurred what was the corresponding forecast?)&nbsp;
-            Some users may find the discrimination diagram easier to understand than the ROC.
-          </p>
-          <p><a id="RPS"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Ranked probability score</i></b></p>
-            <p class="equation">
-              $$\text{RPS} = \frac{1}{M-1}\sum_{k=1}^{M}\left[\sum_{m=1}^{k}(x_m - y_m)\right]^2$$
-            </p>
-          </div>
-          <p>where \(M\) is the number of forecast categories, \(x_k\)
-            is the predicted probability in forecast category \(k\), and \(y_k\)
-            is an indicator (0=no, 1=yes) for the observation in category \(k\).
-          </p>
-          <p><b>Answers the question:</b><i> How well did the probability forecast
-              predict the category that the observation fell into?</i>
-          </p>
-          <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
-          </p>
-          <p><b>Characteristics:</b> Measures the sum of squared differences in cumulative
-            probability space for a multi-category probabilistic forecast. Penalizes
-            forecasts more severely when their probabilities are further from the actual
-            outcome. Negative orientation - can "fix" by subtracting <i>RPS</i> from
-            1. For two forecast categories the <i>RPS</i> is the same as the
-            <a href="index.html/BS">Brier Score</a>.
-          </p>
-          <p><a id="CRPS"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Continuous ranked probability score</i></b></p>
-            <p class="equation">
-              $$\text{CRPS}(F, y) = \int_{-\infty}^{\infty}(F(x) - \mathbf{1}\{y \leq x\})^2 dx$$
-            </p>
-            <p>Where \(\mathbf{1}\{\cdot\}\) denotes the indicator function: \(\mathbf{1}\{P\}=1\) if the predicate \(P\) is true and \(0\) otherwise. In the CRPS formula \(\mathbf{1}\{y \le x\}\) equals 1 when the observation \(y\) is less than or equal to \(x\), and 0 otherwise.</p>
-          </div>
-          <p><b>Answers the question:</b><i> How well did the probability forecast
-              predict the value of the observation?</i>
-          </p>
-          <p><b>Perfect score:</b> 0.
-          </p>
-          <p><b>Characteristics:</b> The <i>CRPS</i> is essentially the
-            <a href="index.html#MAE">Mean Absolute Error</a> of the forecast distribution
-            with respect to the observed distribution. It has units of the variable being
-            verified. Penalizes forecasts more severely when their probabilities are further
-            from the actual outcome. Lower values are better. Because <i>CRPS</i> considers the
-            entire forecast probability distribution, it is a good all-around score for
-            evaluating probabilistic forecasts.
-          </p>
-          <p><a id="RPSS"></a>- - - - - - - - - - -
-          </p>
-          <div>
-            <p><b><i>Ranked probability skill score</i></b></p>
-            <p class="equation">
-              $$\text{RPSS} = 1 - \frac{\text{RPS}}{\text{RPS}_{\text{reference}}}$$
-            </p>
-          </div>
-          <p><b>Answers the question:</b><i> What is the relative improvement of
-              the probability forecast over climatology in predicting the category
-              that the observations fell into?</i>
-          </p>
-          <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill when
-            compared to the reference forecast. <b>Perfect score:</b> 1.
-          </p>
-          <p><b>Characteristics:</b> Measures the improvement of the
-            multi-category probabilistic forecast relative to a reference forecast (usually the
-            long-term or sample climatology). Strictly proper. Takes climatological frequency
-            into account. Unstable when applied to small data sets.
-          </p>
-          <p><a id="relative_value"></a>- - - - - - - - - - -
-          </p>
-          <img src="site/value_determ.gif" alt="Relative value curve for deterministic forecast" width="352"
-            height="264" class="right">
-          <p><b><i>Relative value (value score)</i></b> (<a href="index.html#Richardson_2000">
-              Richardson, 2000</a>; <a href="index.html#Wilks_2001">Wilks, 2001</a>)&nbsp;
-          </p>
-          <p class="equation">
-            $$V = \begin{cases}
-            \frac{\frac{C}{L}(\text{hits} + \text{false alarms} - 1) + \text{misses}}{\frac{C}{L}(P_{\text{clim}} - 1)} & \text{if } \frac{C}{L} < P_{\text{clim}} \\[3ex]
-            \frac{\frac{C}{L}(\text{hits} + \text{false alarms}) + \text{misses} - P_{\text{clim}}}{P_{\text{clim}}\left(\frac{C}{L} - 1\right)} & \text{if } \frac{C}{L} \geq P_{\text{clim}}
-            \end{cases}$$
-          </p>
+      <p>A probabilistic forecast gives a <i>probability</i> of an event occurring,
+        with a value between 0 and 1 (or 0 and 100%). In general, it is difficult
+        to verify a single probabilistic forecast. Instead, a set of probabilistic
+        forecasts, \(x_i\), is verified using observations that those
+        events either occurred (\(y_i = 1\)) or did not occur (\(y_i = 0\)).
+      </p>
+      <p>An accurate probability forecast system has:
+      </p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp; <i>reliability</i> - agreement between
+        forecast probability and mean observed frequency
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <i>sharpness</i> - tendency to forecast
+        probabilities near 0 or 1, as opposed to values clustered around the mean
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <i>resolution</i> - ability of the forecast
+        to resolve the set of sample events into subsets with characteristically
+        different outcomes
+      </p>
+      <p><a id="reliability"></a>- - - - - - - - - - -
+      </p>
+      <img src="site/ReliabilityDiagram.gif" alt="Reliability diagram" width="326" height="321" class="right">
+      <p><b><i>Reliability diagram</i></b> - (called "attributes diagram"
+        when the no-resoloution and no-skill w.r.t. climatology lines are included).</p>
+      <p>The reliability diagram plots the observed frequency against the
+        forecast probability, where the range of forecast probabilities is divided into
+        <i>K</i> bins (for example, 0-5%, 5-15%, 15-25%, etc.). The sample size in each
+        bin is often included as a histogram or values beside the data points.
+      </p>
+      <p><b>Answers the question:</b><i> How well do the predicted
+          probabilities of an event correspond to their observed frequencies?</i>
+      </p>
+      <p><b>Characteristics:</b> Reliability is indicated by the proximity of
+        the plotted curve to the diagonal. The deviation from the diagonal gives
+        the <i>conditional bias</i>. If the curve lies below the line, this
+        indicates overforecasting (probabilities too high); points above the line
+        indicate underforecasting (probabilities too low). The flatter the curve in the
+        reliability diagram, the less resolution it has. A forecast of
+        climatology does not discriminate at all between events and non-events, and thus
+        has no resolution. Points between the "no skill" line and the diagonal
+        contribute positively to the <a href="index.html#BSS">Brier skill score</a>. The frequency
+        of forecasts in each probability bin (shown in the histogram) shows the
+        sharpness of the forecast.
+        <br>
+        The reliability diagram is conditioned on the forecasts (i.e., given
+        that an event was predicted, what was the outcome?), and can be expected to give
+        information on the real meaning of the forecast. It is a good partner
+        to the <a href="index.html#ROC">ROC</a>, which is conditioned on the observations. Some
+        users may find a reliability table (table of observed relative frequency associated with
+        each forecast probability) easier to understand than a reliability diagram.
+      </p>
+      <p><a id="BS"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Brier score</i></b></p>
+        <p class="equation">
+          $$\text{BS} = \frac{1}{N}\sum_{i=1}^{N}(x_i - y_i)^2 = \frac{1}{N}\sum_{k=1}^{K}n_k(x_k - \bar{y}_k)^2 -
+          \frac{1}{N}\sum_{k=1}^{K}n_k(\bar{y}_k - \bar{y})^2 + \bar{y}(1-\bar{y})$$
+        </p>
+      </div>
+      <p><b>Answers the question:</b><i> What is the magnitude of the probability
+          forecast errors?</i>
+      </p>
+      <p>Measures the mean squared probability error. <a href="index.html#Murphy_1973">Murphy
+          (1973)</a> showed that it could be partitioned into three terms: (1) <i>reliability</i>,
+        (2) <i>resolution</i>, and (3) <i>uncertainty</i>.
+      </p>
+      <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
+      </p>
+      <p><b>Characteristics:</b> Sensitive to climatological frequency of the
+        event: the more rare an event, the easier it is to get a good <i>BS</i>
+        without having any real skill.
+      </p>
+      <p><a id="BSS"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Brier skill score</i></b></p>
+        <p class="equation">
+          $$\text{BSS} = 1 - \frac{\text{BS}}{\text{BS}_{\text{reference}}}$$
+        </p>
+        <p>where \(\text{BS}_{\text{reference}}\) is the Brier score of a reference forecast (e.g., using climatology
+          for the forecast).</p>
+      </div>
+      <p><b>Answers the question:</b><i> What is the relative skill of the probabilistic
+          forecast over that of a reference forecast, in terms of predicting whether
+          or
+          not an event occurred?</i>
+      </p>
+      <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill when compared
+        to the reference forecast. <b>Perfect score:</b> 1.
+      </p>
+      <p><b>Characteristics:</b> Measures the improvement of the probabilistic
+        forecast relative to a reference forecast (usually the long-term or
+        sample climatology), thus taking climatological frequency into account. Not
+        strictly proper. Unstable when applied to small data sets; the rarer the event,
+        the larger the number of samples needed.
+      </p>
+      <p><a id="ROC"></a>- - - - - - - - - - -
+      </p>
+      <img src="site/ROC.gif" alt="Relative operating characteristic (ROC)" width="292" height="299" class="right">
+      <p><b><i>Relative operating characteristic</i></b> -
+        Plot <i><a href="index.html#POD">hit
+            rate (POD)</a></i> vs <a href="index.html#POFD"><i>false alarm rate</i> (<i>F</i>)</a>,
+        using a set of increasing probability thresholds (for example, 0.05, 0.15,
+        0.25, etc.) to make the yes/no decision. The area under the ROC curve
+        is frequently used as a score.
+      </p>
+      <p><b>Answers the question:</b><i> What is the ability of the forecast
+          to discriminate between events and non-events?</i>
+      </p>
+      <p><i>ROC</i>: <b>Perfect:</b> Curve travels from bottom left to top
+        left of diagram, then across to top right of diagram. Diagonal line
+        indicates no skill.
+        <br>
+        <i>ROC area</i>:&nbsp; <b>Range:</b> 0 to 1, 0.5 indicates no skill.
+        <b>Perfect score:</b> 1
+      </p>
+      <p><b>Characteristics:</b> ROC measures the ability of the forecast to
+        discriminate between two alternative outcomes, thus measuring resolution.
+        It is not sensitive to bias in the forecast, so says nothing about reliability.
+        A biased forecast may still have good resolution and produce a good ROC
+        curve, which means that it may be possible to improve the forecast through
+        calibration. The ROC can thus be considered as a measure of potential usefulness.
+        <br>
+        The ROC is conditioned on the observations (i.e., given that an event occurred,
+        what was the corresponding forecast?)&nbsp; It is therefore a good companion
+        to the <a href="index.html#reliability">reliability diagram</a>, which is
+        conditioned on the forecasts.
+        <br>
+        More information on ROC can be found in <a href="index.html#Mason_1982">Mason
+          1982</a>, <a href="index.html#Jolliffe_and_Stephenson_2012">Jolliffe and Stephenson 2012</a> (ch.3),
+        and the <a href="https://wise.cgu.edu/wise-tutorials/tutorial-signal-detection-theory/">WISE site</a>.
+      </p>
+      <p><a id="Discrimination_diagram"></a>- - - - - - - - - - -
+      </p>
+      <img src="site/Discrimination_diagram.gif" alt="Discrimination diagram" width="377" height="194" class="right">
+      <p><b><i>Discrimination diagram</i></b> - Plot the likelihood of each forecast probability
+        when the event occurred and when it did not occur. A summary score can be
+        computed as the absolute value of the difference between the mean values of
+        each distribution.
+      </p>
+      <p><b>Answers the question:</b><i> What is the ability of the forecast
+          to discriminate between events and non-events?</i>
+      </p>
+      <p>Perfect discrimination is when there is no overlap between the distributions of
+        forecast probabilities for observed events and non-events. As with the
+        <a href="index.html#ROC">ROC</a> the discrimination diagram is conditioned on the observations
+        (i.e., given that an event occurred what was the corresponding forecast?)&nbsp;
+        Some users may find the discrimination diagram easier to understand than the ROC.
+      </p>
+      <p><a id="RPS"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Ranked probability score</i></b></p>
+        <p class="equation">
+          $$\text{RPS} = \frac{1}{n}\sum_{i=1}^{n}\sum_{k=1}^{K}(\hat{X}_{i,k} - Y_{i,k})^2$$
+        </p>
+      </div>
+      <p>Here \(K\) is the total number of categories and \(n\) is the number of forecast-observation pairs.
+        The forecast probability for the \(k\)th category at point \(i\) is denoted \(\hat{x}_{i,k}\). The observation
+        indicator \(y_{i,k}\) equals 1 when the \(i\)th observation falls in category \(k\),
+        and 0 otherwise. The cumulative forecast probability up to category \(k\) is
+        \(\hat{X}_{i,k}\), while \(Y_{i,k}\) is the corresponding cumulative observation indicator.
+        These are computed as:
+      </p>
+      <p class="equation">
+        $$\hat{X}_{i,k} = \sum_{l=1}^{k} \hat{x}_{i,l} \quad \text{and} \quad Y_{i,k} = \sum_{l=1}^{k} y_{i,l}$$
+      </p>
+      <p><b>Answers the question:</b><i> How well did the probability forecast
+          predict the category that the observation fell into?</i>
+      </p>
+      <p><b>Range:</b> 0 to 1.&nbsp; <b>Perfect score:</b> 0.
+      </p>
+      <p><b>Characteristics:</b> Measures the sum of squared differences in cumulative
+        probability space for a multi-category probabilistic forecast. Penalizes
+        forecasts more severely when their probabilities are further from the actual
+        outcome. For two forecast categories the <i>RPS</i> is the same as the
+        <a href="index.html/BS">Brier Score</a>.
+      </p>
+      <p><a id="CRPS"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Continuous ranked probability score</i></b></p>
+        <p class="equation">
+          $$\text{CRPS}(F, y) = \int_{-\infty}^{\infty}(F(x) - \mathbf{1}\{y \leq x\})^2 dx$$
+        </p>
+        <p>Where \(\mathbf{1}\{\cdot\}\) denotes the indicator function: \(\mathbf{1}\{P\}=1\) if the predicate \(P\) is
+          true and \(0\) otherwise. In the CRPS formula \(\mathbf{1}\{y \le x\}\) equals 1 when the observation \(y\) is
+          less than or equal to \(x\), and 0 otherwise.</p>
+      </div>
+      <p><b>Answers the question:</b><i> How well did the probability forecast
+          predict the value of the observation?</i>
+      </p>
+      <p><b>Range:</b> 0 to \(\infty\).&nbsp; <b>Perfect score:</b> 0.
+      </p>
+      <p><b>Characteristics:</b> The <i>CRPS</i> is essentially the
+        <a href="index.html#MAE">Mean Absolute Error</a> of the forecast distribution
+        with respect to the observed distribution. It has units of the variable being
+        verified. Penalizes forecasts more severely when their probabilities are further
+        from the actual outcome. Lower values are better. Because <i>CRPS</i> considers the
+        entire forecast probability distribution, it is a good all-around score for
+        evaluating probabilistic forecasts.
+      </p>
+      <p><a id="RPSS"></a>- - - - - - - - - - -
+      </p>
+      <div>
+        <p><b><i>Ranked probability skill score</i></b></p>
+        <p class="equation">
+          $$\text{RPSS} = 1 - \frac{\text{RPS}}{\text{RPS}_{\text{reference}}}$$
+        </p>
+      </div>
+      <p><b>Answers the question:</b><i> What is the relative improvement of
+          the probability forecast over climatology in predicting the category
+          that the observations fell into?</i>
+      </p>
+      <p><b>Range:</b> \(-\infty\) to 1, 0 indicates no skill when
+        compared to the reference forecast. <b>Perfect score:</b> 1.
+      </p>
+      <p><b>Characteristics:</b> Measures the improvement of the
+        multi-category probabilistic forecast relative to a reference forecast (usually the
+        long-term or sample climatology). Strictly proper. Takes climatological frequency
+        into account. Unstable when applied to small data sets.
+      </p>
+      <p><a id="relative_value"></a>- - - - - - - - - - -
+      </p>
+      <img src="site/value_determ.gif" alt="Relative value curve for deterministic forecast" width="352" height="264"
+        class="right">
+      <p><b><i>Relative value (value score)</i></b> (<a href="index.html#Richardson_2000">
+          Richardson, 2000</a>; <a href="index.html#Wilks_2001">Wilks, 2001</a>)&nbsp;
+      </p>
+      <p class="equation">
+        $$V = \begin{cases}
+        \frac{\frac{C}{L}(\text{hits} + \text{false alarms} - 1) + \text{misses}}{\frac{C}{L}(P_{\text{clim}} - 1)} &
+        \text{if } \frac{C}{L} < P_{\text{clim}} \\[3ex] \frac{\frac{C}{L}(\text{hits} + \text{false alarms}) +
+          \text{misses} - P_{\text{clim}}}{P_{\text{clim}}\left(\frac{C}{L} - 1\right)} & \text{if } \frac{C}{L} \geq
+          P_{\text{clim}} \end{cases}$$ </p>
           <p><b>Answers the question: </b><i>For a <a href="site/value/relativevalue_more.html">cost/loss
                 ratio</a> C/L for taking action based on a forecast, what is the relative improvement
               in economic value between climatalogical and perfect information?</i>
@@ -1889,7 +1861,8 @@ More scores:<br>
         framed as a Fractions Skill Score
       </p>
       <p class="equation">
-        $$\text{FSS} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(P_{x,i} - P_{y,i})^2}{\frac{1}{N}\sum_{i=1}^{N}P_{x,i}^2 + \frac{1}{N}\sum_{i=1}^{N}P_{y,i}^2}$$
+        $$\text{FSS} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(P_{x,i} - P_{y,i})^2}{\frac{1}{N}\sum_{i=1}^{N}P_{x,i}^2 +
+        \frac{1}{N}\sum_{i=1}^{N}P_{y,i}^2}$$
       </p>
       <p>where \(P_x\) is the forecast fraction,
         \(P_y\) is the observed fraction, and \(N\)
@@ -2175,7 +2148,9 @@ More scores:<br>
           (<a href="index.html#Stensrud_and_Wandishin_2000">Stensrud and Wandishin, 2000</a>)
         </p>
         <p class="equation">
-          $$CR = \frac{\text{area of intersection}}{\text{area of union}} = \frac{\sum_{i=1}^{N} x_{1,i} \cap x_{2,i} \cap x_{3,i} \cap ... \cap x_{m,i} \cap y_i}{\sum_{i=1}^{N} x_{1,i} \cup x_{2,i} \cup x_{3,i} \cup ... \cup x_{m,i} \cup y_i}$$
+          $$CR = \frac{\text{area of intersection}}{\text{area of union}} = \frac{\sum_{i=1}^{N} x_{1,i} \cap x_{2,i}
+          \cap x_{3,i} \cap ... \cap x_{m,i} \cap y_i}{\sum_{i=1}^{N} x_{1,i} \cup x_{2,i} \cup x_{3,i} \cup ... \cup
+          x_{m,i} \cup y_i}$$
         </p>
         <img src="site/Venn.gif" alt="Venn diagram showing intersection of three areas" width="119" height="135">
       </div>
@@ -2224,13 +2199,17 @@ More scores:<br>
       <div>
         <p><b><i>Extreme dependency score</i></b></p>
         <p class="equation">
-          $$\text{EDS} = \frac{2\log\left(\frac{\text{hits} + \text{misses}}{\text{total}}\right)}{\log\left(\frac{\text{hits}}{\text{total}}\right)} - 1 = \frac{\ln p - \ln H}{\ln p + \ln H}$$
+          $$\text{EDS} = \frac{2\log\left(\frac{\text{hits} +
+          \text{misses}}{\text{total}}\right)}{\log\left(\frac{\text{hits}}{\text{total}}\right)} - 1 = \frac{\ln p -
+          \ln H}{\ln p + \ln H}$$
         </p>
       </div>
       <div>
         <p><b><i>Symmetric extreme dependency score</i></b></p>
         <p class="equation">
-          $$\text{SEDS} = \frac{\ln\left(\frac{\text{hits}_{\text{random}}}{\text{hits}}\right)}{\ln\left(\frac{\text{hits}}{\text{total}}\right)} = \frac{\ln q - \ln H}{\ln p + \ln H}$$
+          $$\text{SEDS} =
+          \frac{\ln\left(\frac{\text{hits}_{\text{random}}}{\text{hits}}\right)}{\ln\left(\frac{\text{hits}}{\text{total}}\right)}
+          = \frac{\ln q - \ln H}{\ln p + \ln H}$$
         </p>
       </div>
       <div>
@@ -2324,7 +2303,8 @@ More scores:<br>
       <br>
       <p><b>Answers the question: </b><i>How does the vector error between
           the model and observation vary about the mean vector error (i.e., bias)?</i></p>
-      <p>In the diagram to the right, the mean vector error is represented by \(\bar{\mathbf{A}}=\bar{\mathbf{X}}-\bar{\mathbf{Y}}\).
+      <p>In the diagram to the right, the mean vector error is represented by
+        \(\bar{\mathbf{A}}=\bar{\mathbf{X}}-\bar{\mathbf{Y}}\).
         <br>The error variance ellipse may be represented by: &nbsp;
         <img src="site/VarianceEllipse_medium.gif" alt="Error variance ellipse" width="335" height="263" class="right">
       </p>
@@ -2354,7 +2334,8 @@ More scores:<br>
         <p><a id="RMSF"></a><b><i>Root mean squared factor</i></b> &nbsp;
           (<a href="index.html#Golding_1998">Golding, 1998</a>)</p>
         <p class="equation">
-          $$\text{RMSF} = \exp\left(\sqrt{\frac{1}{N}\sum_{i=1}^{N}\left[\log\left(\frac{x_i}{y_i}\right)\right]^2}\right)$$
+          $$\text{RMSF} =
+          \exp\left(\sqrt{\frac{1}{N}\sum_{i=1}^{N}\left[\log\left(\frac{x_i}{y_i}\right)\right]^2}\right)$$
         </p>
       </div>
       <p><b>Answers the question:</b><i> What is the average multiplicative error?</i>
@@ -2392,10 +2373,9 @@ More scores:<br>
       </p>
       <p><b>Characteristics:</b> Frequently used to quantify the accuracy of
         hydrological predictions. If \(E = 0\) then the model forecast is no more
-        accurate than the mean of the observations; if \(E < 0\) then the mean
-        observed value is a more accurate predictor than the model. The
-        expression is identical to that for the coefficient of determination
-        <i>R</i><sup>2</sup> and the <a href="index.html#Skill_score">reduction of variance</a>.<br>
+        accurate than the mean of the observations; if \(E < 0\) then the mean observed value is a more accurate
+          predictor than the model. The expression is identical to that for the coefficient of determination <i>
+          R</i><sup>2</sup> and the <a href="index.html#Skill_score">reduction of variance</a>.<br>
       </p>
       <p>- - - - - - - - - - -
       </p>
@@ -3723,8 +3703,8 @@ THERE USED TO BE LINKS TO VERIFICATION BLUES HERE
 </body>
 
 
-<<<<<<< HEAD
-</html>
-=======
+<<<<<<< HEAD </html>
+  =======
+
 </html>
 >>>>>>> a6639ab (first pass)
