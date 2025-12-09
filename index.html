@@ -502,6 +502,8 @@ More scores:<br>
           detection.</li>
         <li>\(x\) = forecast value of a single-valued forecast (including the probability of a binary event).</li>
         <li>\(y\) = observation value.</li>
+        <li>\(K\) = total number of categories.</li>
+        <li>\(N\) = total number of forecast/observation pairs (samples).</li>
       </ul>
       </p>
 
@@ -566,7 +568,7 @@ More scores:<br>
             <th colspan="2" style="text-align: right;">Total</th>
             <td class="lightgreen-cell"><em>observed yes</em></td>
             <td class="lightgreen-cell"><em>observed no</em></td>
-            <td class="lightgreen-cell"><em>total</em></td>
+            <td class="lightgreen-cell"><em>N</em></td>
           </tr>
         </tbody>
       </table>
@@ -918,8 +920,8 @@ More scores:<br>
       <div>
         <p><b><i>Odds ratio skill score (Yule's Q)</i></b></p>
         <p class="equation">
-          $$\text{ORSS} = \frac{\text{hits} \cdot \text{correct negatives} - \text{misses} \cdot \text{false
-          alarms}}{\text{hits} \cdot \text{correct negatives} + \text{misses} \cdot \text{false alarms}}$$
+          $$\text{ORSS} = \frac{\text{hits} \cdot \text{correct negatives} - \text{misses} \cdot
+          \text{false alarms}}{\text{hits} \cdot \text{correct negatives} + \text{misses} \cdot \text{false alarms}}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What was the improvement of the forecast
@@ -1068,13 +1070,6 @@ More scores:<br>
         it is heavily influenced by the most common category.
       </p>
       <p><a id="HSSmulti"></a>- - - - - - - - - - -
-      </p>
-      <div>
-        <p><b><i>Accuracy (fraction correct)</i></b></p>
-        <p class="equation">
-          $$\text{Accuracy} = \frac{\text{hits} + \text{correct negatives}}{\text{total}}$$
-        </p>
-      </div>
       <div>
         <p><a id="multicategory_HSS"></a><b><i>Heidke skill score</i></b></p>
         <p class="equation">
@@ -1251,7 +1246,7 @@ More scores:<br>
       <div>
         <p><b><i>Mean error</i></b></p>
         <p class="equation">
-          $$\text{ME} = \frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)$$
+          $$\text{ME} = \frac{1}{N}\sum_{i=1}^{N}(x_i - y_i)$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the average forecast error?</i>
@@ -1291,7 +1286,7 @@ More scores:<br>
       <div>
         <p><b><i>Mean absolute error</i></b></p>
         <p class="equation">
-          $$\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|x_i - y_i|$$
+          $$\text{MAE} = \frac{1}{N}\sum_{i=1}^{N}|x_i - y_i|$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the average magnitude of the forecast errors?</i>
@@ -1308,7 +1303,7 @@ More scores:<br>
       <div>
         <p><b><i>Root mean square error</i></b></p>
         <p class="equation">
-          $$\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)^2}$$
+          $$\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(x_i - y_i)^2}$$
         </p>
       </div>
       <p><b>Answers the question: </b><i>What is the average magnitude of the forecast errors?</i>
@@ -1331,7 +1326,7 @@ More scores:<br>
       <div>
         <p><b><i>Mean squared error</i></b></p>
         <p class="equation">
-          $$\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}(x_i - y_i)^2$$
+          $$\text{MSE} = \frac{1}{N}\sum_{i=1}^{N}(x_i - y_i)^2$$
         </p>
       </div>
       <p>Measures the mean squared difference between the forecasts and observations.
@@ -1648,18 +1643,18 @@ More scores:<br>
       <div>
         <p><b><i>Ranked probability score</i></b></p>
         <p class="equation">
-          $$\text{RPS} = \frac{1}{n}\sum_{i=1}^{n}\sum_{k=1}^{K}(\hat{X}_{i,k} - Y_{i,k})^2$$
+          $$\text{RPS} = \frac{1}{N}\sum_{i=1}^{N}\sum_{k=1}^{K}(X_{i,k} - Y_{i,k})^2$$
         </p>
       </div>
-      <p>Here \(K\) is the total number of categories and \(n\) is the number of forecast-observation pairs.
-        The forecast probability for the \(k\)th category at point \(i\) is denoted \(\hat{x}_{i,k}\). The observation
+      <p>Here \(K\) is the total number of categories and \(N\) is the number of forecast-observation pairs.
+        The forecast probability for the \(k\)th category at point \(i\) is denoted \(x_{i,k}\). The observation
         indicator \(y_{i,k}\) equals 1 when the \(i\)th observation falls in category \(k\),
         and 0 otherwise. The cumulative forecast probability up to category \(k\) is
-        \(\hat{X}_{i,k}\), while \(Y_{i,k}\) is the corresponding cumulative observation indicator.
+        \(X_{i,k}\), while \(Y_{i,k}\) is the corresponding cumulative observation indicator.
         These are computed as:
       </p>
       <p class="equation">
-        $$\hat{X}_{i,k} = \sum_{l=1}^{k} \hat{x}_{i,l} \quad \text{and} \quad Y_{i,k} = \sum_{l=1}^{k} y_{i,l}$$
+        $$X_{i,k} = \sum_{l=1}^{k} x_{i,l} \quad \text{and} \quad Y_{i,k} = \sum_{l=1}^{k} y_{i,l}$$
       </p>
       <p><b>Answers the question:</b><i> How well did the probability forecast
           predict the category that the observation fell into?</i>
@@ -2267,8 +2262,8 @@ More scores:<br>
 
       <div style="display: flex;">
         <p><b><i>Taylor diagram</i></b> of correlation coefficient,
-          root-mean-square difference, and standard deviation (<a href="index.html#Taylor_2001">
-            Taylor, 2001</a>); see also <a href="https://pcmdi.llnl.gov/staff/taylor/CV/Taylor_diagram_primer.pdf">
+          root-mean-square difference, and standard deviation (<a href="index.html#Taylor_2001">Taylor 2001</a>); see
+          also <a href="https://pcmdi.llnl.gov/staff/taylor/CV/Taylor_diagram_primer.pdf">
             LLNL description</a>. An example of a Taylor diagram is shown at right.</p>
         <img src="site/TaylorDiagram.gif" alt="Taylor diagram example" width="347" height="331">
       </div>
