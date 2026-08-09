@@ -89,6 +89,52 @@
   window.addEventListener("resize", updateScrollableTables);
   updateScrollableTables();
 
+  var equationFitFrame;
+
+  function fitDisplayEquations() {
+    var equations = document.querySelectorAll(".equation");
+    var isWideScreen = window.matchMedia("(min-width: 901px)").matches;
+    var renderedEquationCount = 0;
+
+    equations.forEach(function (equation) {
+      equation.style.removeProperty("font-size");
+      if (!isWideScreen) return;
+
+      var math = equation.querySelector("mjx-container[display=\"true\"] mjx-math");
+      if (!math || equation.clientWidth < 1) return;
+      renderedEquationCount += 1;
+
+      var availableWidth = equation.clientWidth;
+      var renderedWidth = math.getBoundingClientRect().width;
+      if (renderedWidth > availableWidth) {
+        equation.style.fontSize = (availableWidth / renderedWidth * 0.98) + "em";
+      }
+    });
+
+    document.documentElement.classList.toggle(
+      "equations-fit-ready",
+      isWideScreen && renderedEquationCount > 0
+    );
+  }
+
+  function scheduleEquationFit() {
+    if (equationFitFrame) window.cancelAnimationFrame(equationFitFrame);
+    equationFitFrame = window.requestAnimationFrame(fitDisplayEquations);
+  }
+
+  window.addEventListener("resize", scheduleEquationFit);
+  scheduleEquationFit();
+
+  if ("MutationObserver" in window) {
+    var equationObserver = new MutationObserver(scheduleEquationFit);
+    equationObserver.observe(document.getElementById("main-content"), {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  window.setTimeout(scheduleEquationFit, 1500);
+
   var navLinks = Array.from(sidebar.querySelectorAll('a[href^="#"]'));
   var observedTargets = navLinks.map(function (link) {
     return document.getElementById(link.hash.slice(1));

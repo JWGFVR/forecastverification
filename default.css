@@ -273,6 +273,12 @@ table.left-aligned-table td {
   -webkit-overflow-scrolling: touch;
 }
 
+@media (min-width: 901px) {
+  html.equations-fit-ready .equation {
+    overflow-x: hidden;
+  }
+}
+
 div.flexbox {
   display: flex;
   gap: var(--space-5);
