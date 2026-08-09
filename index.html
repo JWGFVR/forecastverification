@@ -3,6 +3,7 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Verification FAQ</title>
   <!-- IMPORTANT - THIS CSS FILE DEFINES THE STYLES USED IN THE PAGE -->
   <!-- WHEN YOU SEE class="..." IN INDEX.HTML, LOOK IN THE CSS FILE FOR A DESCRIPTION -->
@@ -16,8 +17,20 @@
 
 <body>
 
-  <div id="sidebar">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="mobile-nav-bar">
+    <span class="mobile-site-name">JWGFVR Forecast Verification</span>
+    <button id="contents-toggle" class="contents-toggle" type="button" aria-expanded="false"
+      aria-controls="sidebar">
+      <span class="contents-toggle-icon" aria-hidden="true"></span>
+      Contents
+    </button>
+  </div>
+
+  <aside id="sidebar" aria-label="Document contents">
     <h2>Contents</h2>
+    <nav aria-label="On this page">
     <ul>
       <li><a href="#Purpose">What is this website about?</a></li>
       <li><a href="#Definition">What is forecast verification?</a>
@@ -65,16 +78,20 @@
       <li><a href="#Contributors">Contributors to this site</a></li>
       <!--<li><a href="#Art">Verification and art</a></li>-->
     </ul>
-  </div>
+    </nav>
+  </aside>
 
-  <div id="main-content">
+  <button class="nav-scrim" type="button" aria-label="Close contents" tabindex="-1"></button>
+
+  <main id="main-content" tabindex="-1">
 
     <!----------------------------------------------------------------------------------------------------------------------------->
-    <section>
+    <section class="site-header" aria-labelledby="page-title">
       <!--- Page header --------------------------------------------------------------------------------------------------->
       <!----------------------------------------------------------------------------------------------------------------------------->
 
       <!-- Logos -->
+      <div class="logo-group" aria-label="Partner organisations">
       <a
         href="https://community.wmo.int/en/activity-areas/wwrp/wwrp-working-groups/wwrp-forecast-verification-research">
         <img alt="JWGFVR logo" src="site/JWGFVR-logo-250.png" height="90"></a>
@@ -82,6 +99,7 @@
         <img alt="WWRP logo" src="site/WWRPlogo.gif" height="90"></a>
       <a href="https://www.wcrp-climate.org/">
         <img alt="WCRP logo" src="site/WCRP_logo.jpg" height="90"></a>
+      </div>
       <!--<hr>-->
 
       <!-- UNCOMMENT AND USE THIS SECTION TO PROMOTE NEWS, ETC. -->
@@ -95,7 +113,7 @@ More scores:<br>
 <hr>
 -->
 
-      <h1>Forecast verification - methods, issues and FAQ</h1>
+      <h1 id="page-title">Forecast verification - methods, issues and FAQ</h1>
 
     </section>
 
@@ -3702,7 +3720,11 @@ THERE USED TO BE LINKS TO VERIFICATION BLUES HERE
       </p>
     </footer>
 
-  </div>
+  </main>
+
+  <a class="back-to-top" href="#page-title" aria-label="Back to top">Back to top</a>
+
+  <script src="site.js"></script>
 
 </body>
 
