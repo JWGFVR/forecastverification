@@ -89,6 +89,69 @@
   window.addEventListener("resize", updateScrollableTables);
   updateScrollableTables();
 
+  function markEntryHeading(element) {
+    var title = element.matches("b, strong") ? element : element.querySelector("b, strong");
+    element.classList.add("entry-heading");
+    if (title) title.classList.add("score-title");
+  }
+
+  function findEntryHeading(divider) {
+    var candidate = divider.nextElementSibling;
+    var skippedImages = 0;
+
+    while (candidate && candidate.matches("img") && skippedImages < 2) {
+      candidate = candidate.nextElementSibling;
+      skippedImages += 1;
+    }
+
+    if (!candidate) return;
+
+    if (candidate.matches("p") && candidate.querySelector("b, strong")) {
+      markEntryHeading(candidate);
+      return;
+    }
+
+    if (candidate.matches("b, strong")) {
+      markEntryHeading(candidate);
+      return;
+    }
+
+    if (candidate.matches("div")) {
+      var firstParagraph = candidate.querySelector("p");
+      if (firstParagraph && firstParagraph.querySelector("b, strong")) {
+        markEntryHeading(firstParagraph);
+      }
+    }
+  }
+
+  document.querySelectorAll("#main-content p").forEach(function (paragraph) {
+    if (!/^(?:-\s*){5,}$/.test(paragraph.textContent.trim())) return;
+
+    paragraph.classList.add("entry-divider");
+    Array.from(paragraph.childNodes).forEach(function (node) {
+      if (node.nodeType === 3 || (node.nodeType === 1 && node.tagName === "BR")) {
+        node.remove();
+      }
+    });
+    findEntryHeading(paragraph);
+  });
+
+  document.querySelectorAll("#main-content img").forEach(function (figureImage) {
+    if (figureImage.closest(".site-header") || figureImage.closest(".content-figure")) return;
+
+    var alignment = figureImage.classList.contains("right") ? "right" :
+      (figureImage.classList.contains("left") ? "left" : "");
+    var figure = document.createElement("span");
+
+    figure.className = "content-figure" + (alignment ? " content-figure--" + alignment : "");
+    figure.setAttribute("role", "figure");
+
+    figureImage.parentNode.insertBefore(figure, figureImage);
+    figureImage.classList.remove("left", "right");
+    figureImage.style.removeProperty("margin-bottom");
+    figure.appendChild(figureImage);
+  });
+
   var equationFitFrame;
 
   function fitDisplayEquations() {

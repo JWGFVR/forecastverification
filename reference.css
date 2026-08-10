@@ -45,6 +45,49 @@ body font {
   font-family: inherit;
 }
 
+.reference-header {
+  max-width: 78ch;
+  margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--reference-border);
+  text-align: center;
+}
+
+.reference-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  color: #087b78;
+  font-size: 0.8rem;
+  font-weight: 720;
+  letter-spacing: 0.055em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.reference-breadcrumb::before {
+  content: "\2190";
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.reference-breadcrumb:hover {
+  text-decoration: underline;
+}
+
+.reference-header h1 {
+  margin-bottom: 1rem;
+}
+
+.reference-byline {
+  max-width: 60ch;
+  margin: 0 auto;
+  color: #5c6d76;
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
 body h1,
 body h2,
 body h3,

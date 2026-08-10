@@ -69,6 +69,13 @@ a:hover {
   text-decoration-thickness: 0.12em;
 }
 
+/* Legacy named anchors are sometimes used as wrappers around ordinary text.
+   They are targets, not links, so they should not inherit link colouring. */
+a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
@@ -131,8 +138,50 @@ p.center {
 }
 
 p.green {
-  color: var(--color-example);
-  font-weight: 550;
+  max-width: 78ch;
+  margin: var(--space-5) 0 var(--space-6);
+  padding: 0.9rem var(--space-4);
+  border-left: 4px solid #49a99f;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: #e6f5f2;
+  color: #145e54;
+  font-weight: 600;
+}
+
+p.green::before {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--color-teal-700);
+  content: "Example result";
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.entry-divider {
+  width: min(100%, 78ch);
+  height: 1px;
+  margin: var(--space-7) 0 var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.entry-heading {
+  max-width: 78ch;
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+  line-height: 1.45;
+}
+
+.entry-heading .score-title,
+.entry-heading.score-title {
+  color: var(--color-navy-900);
+  font-size: 1.08rem;
+}
+
+b.entry-heading,
+strong.entry-heading {
+  display: block;
 }
 
 ul,
@@ -179,6 +228,52 @@ img.left {
 img.block {
   display: block;
   margin: var(--space-5) auto;
+}
+
+.content-figure {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background: #f8faf9;
+}
+
+.content-figure:not(.content-figure--right):not(.content-figure--left) {
+  margin: var(--space-5) auto;
+}
+
+.content-figure--right {
+  float: right;
+  margin: var(--space-2) 0 var(--space-5) var(--space-6);
+}
+
+.content-figure--left {
+  float: left;
+  margin: var(--space-2) var(--space-6) var(--space-5) 0;
+}
+
+.content-figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+.figure-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  align-items: flex-start;
+  margin: var(--space-5) 0 var(--space-6);
+}
+
+.figure-pair .content-figure {
+  float: none;
+  margin: 0;
+}
+
+.figure-pair .content-figure:not(.content-figure--right):not(.content-figure--left) {
+  margin: 0;
 }
 
 .table-scroll {
@@ -629,8 +724,9 @@ footer {
   }
 
   img.right,
-  img.left {
-    display: block;
+  img.left,
+  .content-figure--right,
+  .content-figure--left {
     float: none;
     margin: var(--space-5) auto;
   }
@@ -638,6 +734,18 @@ footer {
   div.flexbox,
   div[style*="display: flex"] {
     display: block !important;
+  }
+
+  .figure-pair {
+    display: block;
+  }
+
+  .figure-pair .content-figure {
+    margin: var(--space-5) auto;
+  }
+
+  .figure-pair .content-figure:not(.content-figure--right):not(.content-figure--left) {
+    margin: var(--space-5) auto;
   }
 
   .indented {
